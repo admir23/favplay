@@ -10,6 +10,30 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+ @import "bootstrap";
+
+// modifed bootstrap
+.jumbotron {
+    background-image: url(https://images.pexels.com/photos/121748/pexels-photo-121748.jpeg);
+    color: white;
+    background-attachment: fixed;
+    min-height: 600px;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+// Custom Css
+
+.drop-nav {
+	padding:0 10px;
+}
+
+
+.to-center{
+	padding: 50px 0px;
+}
