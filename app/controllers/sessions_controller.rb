@@ -4,20 +4,26 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(username: params[:username])
-    # @user = User.where(username: params[:username]).first
-
     if @user && @user.authenticate(params[:password])
       flash[:notice] = 'Logged in successfully!'
       log_in @user
+      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       redirect_to root_path
     else
-      flash[:error] = 'Incorrect username or password! :\'('
+      flash[:error] = 'Incorrect username or password!'
       render :new
     end
   end
 
+  # Returns true if the user is logged in, false otherwise.
+  def logged_in?
+    !current_user.nil?
+  end
+
   def destroy
-    session.delete(:user_id)
-    redirect_to new_session_path
+    log_out if logged_in?
+    redirect_to root_path
   end
 end
+  
+

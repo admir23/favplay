@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root "home#index"
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
 
   namespace :admin do
     resource :dashboard, only: [:show]
@@ -15,8 +18,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :users, only: [:new, :create]
   resource :about, only: [:show]
-  resource :session, only: [:new, :create, :destroy]
-
+ 
   resources :products do
     collection do
       get :expensive

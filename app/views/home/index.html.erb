@@ -9,8 +9,8 @@
 						<hr class="my-1">
 						<p>Create an account with us, or simply log in below!</p>
 						<p class="lead">
+							<%= link_to 'Log in', login_path, class: "btn btn-primary" %>
 							<%= link_to 'Sign up!', new_user_path, class: "btn btn-primary" %>
-							<%= link_to 'Log in', new_session_path, class: "btn btn-primary" %>
 						</p>	
 			<% else %>
         <h1 class="display-3">Your Playlist Below</h1>
