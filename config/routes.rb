@@ -6,23 +6,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :dashboard, only: [:show]
-    resources :products
   end
 
-  resources :categories
-  resources :sellers do
-    member do
-      get :products
-    end
-  end
-  resources :orders
   resources :users, only: [:new, :create]
-  resource :about, only: [:show]
+  resources :playlists
+  resources :songs
+  resources :genres
+  resources :albums
+  resources :artists
+  resources :favorite_songs, only: [:new, :create]
+  resources :playlists_songs
  
-  resources :products do
-    collection do
-      get :expensive
-      get :cheap
-    end
-  end
 end

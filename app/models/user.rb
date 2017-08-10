@@ -4,15 +4,32 @@ class User < ApplicationRecord
   validates_presence_of :username, :email
   validates_uniqueness_of :username, :email
   validates :password, presence: true, length: { minimum: 6 }
+  
   has_secure_password
+
+  has_many :playlists, dependent: :destroy
+  has_many :favorites
+  has_many :favorite_songs, through: :favorites, source: :users
+  has_many :albums
+  has_many :artists
+  has_many :songs
+  has_many :genres
+  
+
 
   ROLE_USER = 0
   ROLE_ADMIN = 1
+  ROLE_SUPERADMIN = 2
 
 
 # Defines if user is admin
   def admin?
     role == ROLE_ADMIN
+  end  
+
+# Defines if user is superadmin
+  def superadmin?
+    role == ROLE_SUPERADMIN
   end
 
 
