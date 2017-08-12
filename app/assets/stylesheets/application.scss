@@ -13,10 +13,10 @@
  */
 
  @import "bootstrap";
+ @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
 
 // modifed bootstrap
 .jumbotron {
-    background-image: url(https://images.pexels.com/photos/121748/pexels-photo-121748.jpeg);
     color: white;
     background-attachment: fixed;
     min-height: 600px;
@@ -25,9 +25,41 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: transparent;
 }
 
 // Custom Css
+
+html, body {
+  height: 100%;
+  font-family: Oswald, sans-serif;
+}
+
+
+section {
+    position: relative;
+    height: 100%;
+}    
+
+#splash-blue {
+    background-color: #272D4E;
+    background-image: url(https://images.pexels.com/photos/374703/pexels-photo-374703.jpeg);
+    height: 100%;
+    display: flex;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.layer{
+  background-color: rgba(0,0,0,0.4);
+  top: 0;
+  left:  0;
+  height: 100%;
+  width: 100%;
+
+}
 
 .drop-nav {
 	padding:0 10px;
@@ -53,3 +85,4 @@
   width: auto;
   margin-left: 0;
 }
+

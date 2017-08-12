@@ -1,0 +1,45 @@
+<div class="col-md-4" id="playlist_<%= playlist.id %>">
+  <div class="card"><!-- Panel Info -->
+    <div class="card-block">
+      <h3 class="card-title"><%= playlist.name %></h3>
+      <p class="card-text"><%= time_ago_in_words(playlist.created_at) %></p>
+      <p class="card-text"><%= playlist.description %></p>
+      <br>
+      <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdateplaylist_<%= playlist.id %>">
+            Edit
+          </button>
+          <%= link_to 'Delete', playlist_path(playlist), method: :delete, class: "btn btn-danger", remote: true %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal - update posts -->
+    <%= form_for(playlist, :method => :put, remote: true) do |f| %>
+    <div class="modal fade" id="myupdateplaylist_<%= playlist.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Edit</h4>
+        </div>
+        <div class="modal-body">
+          <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_area :name, class: "form-control" %>
+          </div>
+          <div class="field">
+          <%= f.label :description %><br>
+          <%= f.text_area :description, class: "form-control" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="myupdatebutton_<%= playlist.id %>" class="btn btn-default" data-dismiss="modal">Close</button>
+         <%= submit_tag 'Update', class: 'btn btn-block btn-default' %>
+        </div>
+      </div>
+    </div>
+  </div>
+ <% end %>
+ <!-- Modal -->
+</div>

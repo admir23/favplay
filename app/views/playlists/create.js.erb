@@ -1,0 +1,7 @@
+$("#mynewplaylist").modal('hide');
+$(".playlist_name").val('');
+$(".playlist_description").val('');
+
+
+$("#container_playlists").prepend('<%= j render @playlist %>');
+$("#playlist_<%= @playlist.id %>").hide().fadeIn(1000);
