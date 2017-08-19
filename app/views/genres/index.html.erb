@@ -1,0 +1,24 @@
+<div class="container p-5">
+	<div class="row">
+		<div class="col-md-3 offset-md-10">
+	 		<h1>Genres <%= link_to 'Add new', new_genre_path, class: 'btn btn-primary' %></h1>
+	 		<br>
+	 		<%= count_for @genres,  'Total' %>
+	 	</div>
+	 	<br>
+	 	<table class="table pt-5">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Genres</th>
+      <th>Songs</th>
+      <th>Artists</th>
+      <th>Albums</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @genres %>
+  </tbody>
+</table>
+	</div>
+</div

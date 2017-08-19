@@ -2,5 +2,8 @@
 <%= f.label :name %>
 <%= f.text_field :name, class:'form-control' %>
 <br>
+<%= f.label :description %>
+<%= f.text_area :description, class:'form-control' %>
+<br>
 <%= f.submit params[:action] == 'new' ? 'Save' : 'Update', class: 'btn btn-block btn-default' %>
 <% end %>

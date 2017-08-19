@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812205027) do
+ActiveRecord::Schema.define(version: 20170819153316) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name", null: false
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20170812205027) do
     t.datetime "updated_at", null: false
     t.integer "artist_id"
     t.integer "user_id"
-    t.integer "genres_id"
+    t.integer "genre_id"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
-    t.index ["genres_id"], name: "index_albums_on_genres_id"
+    t.index ["genre_id"], name: "index_albums_on_genre_id"
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20170812205027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "genre_id"
+    t.index ["genre_id"], name: "index_artists_on_genre_id"
     t.index ["user_id"], name: "index_artists_on_user_id"
   end
 
@@ -64,7 +66,7 @@ ActiveRecord::Schema.define(version: 20170812205027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.text "description"
+    t.string "description"
     t.index ["user_id"], name: "index_playlists_on_user_id"
   end
 

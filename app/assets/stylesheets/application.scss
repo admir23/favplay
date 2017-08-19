@@ -28,6 +28,17 @@
     background-color: transparent;
 }
 
+.navbar-brand {
+    font-size: 2em;
+    
+}
+
+.navbar-brand>img {
+  width: 50%;
+  height: 50%;
+}
+
+
 // Custom Css
 
 html, body {
@@ -86,3 +97,7 @@ section {
   margin-left: 0;
 }
 
+.form-error-text {
+  color: red;
+  font-weight: 300;
+}

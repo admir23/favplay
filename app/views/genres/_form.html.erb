@@ -1,0 +1,8 @@
+<%= form_for @genre do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, class:'form-control' %>
+	<%= error_for :name, @genre.errors %>
+	<br>	
+	<%= f.submit params[:action] == 'new' ? 'Save' : 'Update', class: 'btn btn-block btn-primary' %>
+<% end %>	
+

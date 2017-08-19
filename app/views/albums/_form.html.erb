@@ -1,0 +1,23 @@
+<%= form_for @album do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, class:'form-control' %>
+	<%= error_for :name, @album.errors %>
+	<br>
+	<%= f.label :released %>
+	<%= f.text_field :released, class:'form-control' %>
+	<%= error_for :released, @album.errors %>
+	<br>	
+	<%= f.label :artist_id %>
+	<%= f.collection_select :artist_id, Artist.all, :id, :name, {prompt: 'Choose artist'}, class:'form-control' %>
+	<%= error_for :artist_id, @album.errors %>
+	<br>	
+	<%= f.label :genre_id %>
+	<%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: 'Choose genre'}, class: 'form-control' %>
+	<%= error_for :genre_id, @album.errors %>
+	<br>
+	<%= f.label :img_url, 'Album Cover' %>
+  <%= f.text_area :img_url, class:'form-control' %>
+  <%= error_for :img_url, @album.errors %>
+	<br>	
+	<%= f.submit params[:action] == 'new' ? 'Save' : 'Update', class: 'btn btn-block btn-primary' %>
+<% end %>	

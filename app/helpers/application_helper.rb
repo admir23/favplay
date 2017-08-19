@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def error_for(attribute, errors, &block)
     if errors[attribute].any?
-      content_tag :p, nil, class: 'validation-error' do
+      content_tag :p, nil, class: 'validation-error form-error-text' do
         yield("#{parse_attribute(attribute)} #{errors[attribute][0]}") if block_given?
         "#{parse_attribute(attribute)} #{errors[attribute][0]}"
       end
@@ -20,9 +20,11 @@ module ApplicationHelper
     attribute.to_s.capitalize.split('_').join(' ')
   end
 
-  def navbar_link(options)
-    content_tag :li, nil, class: params[options[action]] do
-      content_tag :p, flash[type]
-    end
+  def count_for(model, message = 'Count')
+    content_tag :h2, "#{message} #{model.count}"
+  end
+
+  def count_songs_for(model)
+    model.products.count
   end
 end
