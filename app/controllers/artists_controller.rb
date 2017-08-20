@@ -34,6 +34,7 @@ class ArtistsController < ApplicationController
 	end
 
 	def show
+		@albums = @artist.albums
 	end
 
 	def destroy
@@ -45,7 +46,7 @@ class ArtistsController < ApplicationController
 	private
   
   def artist_params
-		params.require(:artist).permit(:name, :genre_id)			
+		params.require(:artist).permit(:name, :artist_image, :genre_id)			
   end
 
   def find_artist

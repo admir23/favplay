@@ -11,10 +11,11 @@ class AlbumsController < ApplicationController
 	
 	def create
 		@album = Album.new(album_params)
-		
-		if @album.save
+		@album.user_id = current_user.id
+    
+    if @album.save
 			flash[:notice] = 'Album created successfully'
-			redirect_to = albums_path
+			redirect_to albums_path
 		else
 			render :new
 		end
@@ -35,6 +36,7 @@ class AlbumsController < ApplicationController
 
 
 	def show
+  
 	end
 
 	def destroy
