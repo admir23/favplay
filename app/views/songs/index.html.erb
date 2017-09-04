@@ -1,8 +1,22 @@
 <div class="row mt-5">
 	<div class="container">
-	 	<div class="col-md-4 offset-md-4">
-	 		<h1>Songs <%= link_to 'Add new', new_song_path, class: 'btn btn-primary' %></h1>
-	 		<%= count_for @songs,  'Total' %>
-	 	</div>
+		<div class="col-md-4 offset-md-4">
+			<h1>Songs <%= link_to 'Add new', new_song_path, class: 'btn btn-primary' %></h1>
+			<br>
+		</div>
+		<table class="table pt-5">
+	    <thead>
+	      <tr>
+	        <th>#</th>
+	        <th>Song</th>
+	        <th>Artist</th>
+	        <th>Album</th>
+	        <th>Length</th>
+	      </tr>
+	    </thead>
+		  <tbody>
+		    <%= render @songs %>
+		  </tbody>
+	  </table>
 	</div>
 </div>	 	

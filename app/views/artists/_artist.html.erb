@@ -3,7 +3,7 @@
 	 <%=image_tag artist.artist_image, class: "card-img-top img-thumbnail " %>
 		<div class="card-block">
 		  <h3 class="card-title">Artist: <%= link_to artist.name, artist_path(artist) %></h3>
-		  <p class="card-text">Albums: <%= link_to artist.genre.name, genre_path(artist.genre) %></p>
+		  <p class="card-text">Genre: <%= link_to artist.genre.name, genre_path(artist.genre) %></p>
 		  <p class="card-text">Created: <%= time_ago_in_words(artist.created_at) %></p>
 		  
 		  <br>

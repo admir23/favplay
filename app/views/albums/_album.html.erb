@@ -1,6 +1,6 @@
 <div class="col-md-4 p-3">
-	<div class="card" style="width: 20rem;">
-	 <%=image_tag album.img_url, class: "card-img-top" %>
+	<div class="card">
+	 <%=image_tag album.img_url, class: "card-img-top img-thumbnail "%>
 		<div class="card-block">
 		  <h3 class="card-title">Album: <%= link_to album.name, album_path(album) %></h3>
 		  <p class="card-text">Artist: <%= link_to album.artist.name, artist_path(album.artist) %></p>
