@@ -1,0 +1,18 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal">×</button>
+      <h3>Add song to playlist</h3>
+    </div>
+    <div class="modal-body">
+      <%= form_for PlaylistSong.new, remote: true, url: playlist_songs_path, method: :post, id: 'myForm' do |form| %>
+  		  <input id="songId" name="songId" type="hidden" />
+        <%= form.collection_select :playlist_id, Playlist.where(user_id: current_user.id), :id, :name, { prompt: 'Choose Playlist' }, class: 'form-control' %>
+        <br>
+        <%= form.submit 'Save', method: :post, class: 'btn btn-block btn-primary' %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

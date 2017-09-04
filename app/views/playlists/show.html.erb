@@ -3,7 +3,12 @@
 		<p id="notice"><%= notice %></p>
 
 		  <h3>Title:  <%= @playlist.name %></h3>
-		
+
+		  <div class="container">
+		  	
+		  	<%= render 'song' %>
+
+
 		<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 		<%= link_to 'Back', playlists_path %>
   </div>

@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :albums
   resources :artists
   resources :favorite_songs, only: [:new, :create]
-  resources :playlists_songs
+  resources :playlist_songs
  
 end

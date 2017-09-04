@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_many :playlists, dependent: :destroy
   has_many :favorites
-  has_many :favorite_songs, through: :favorites, source: :users
+  has_many :favorite_songs, through: :favorites, source: :song
   has_many :albums
   has_many :artists
   has_many :songs

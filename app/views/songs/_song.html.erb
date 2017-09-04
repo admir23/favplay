@@ -4,5 +4,37 @@
   <td><%= link_to song.artist.name, artist_path(song.artist_id)%></td>
   <td><%= link_to song.album.name, album_path(song.album_id)%></td>
   <td><%= link_to song.length, song_path(song)%></td>
-  
+<% if logged_in? %>
+    <td>
+      <% unless current_user.favorite_songs.exists?(id: song.id) %>
+        <%= link_to favorite_songs_path(song_id: song), method: :post do %>
+          <i class="glyphicon glyphicon-heart-empty gi-2x" role="button" aria-hidden="true"></i>
+        <% end %>
+      <% else %>
+        <%= link_to favorite_song_path(song), method: :delete do %>
+          <i class="glyphicon glyphicon-heart gi-2x" role="button" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to song.youtube_link, target: :_blank do %>
+        <span class="glyphicon glyphicon-play gi-2x" role="button" aria-hidden="true"></span>
+      <% end %>
+    </td>
+
+    <% if current_user.playlists.first.nil? %>
+      <td>
+        <a data-toggle="modal" href="#myModal" class="btn btn-sm btn-danger">Add New playlist</a>
+        <%= render 'shared/new_playlist' %>
+      </td>
+    <% else %>
+      <td>
+        <a data-toggle="modal" data-target="#addSong" data-id="<%= song.id %>" title="Add this song to playlist" class="open-AddSong btn btn-sm btn-success" href="#addSong">Add to playlist</a>
+
+        <div class="modal fade" id="addSong">
+          <%= render 'shared/add_song_to_playlist' %>
+        </div>
+      </td>
+    <% end %>
+  <% end %>
 </tr>
