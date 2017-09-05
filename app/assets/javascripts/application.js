@@ -12,7 +12,12 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap/bootstrap-tooltip
 //= require bootstrap
 //= require turbolinks
 //= require_tree 
 
+
+$(function(){
+  $("a[rel='tooltip']").tooltip();
+})

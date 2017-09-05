@@ -32,6 +32,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
+gem 'bootstrap-tooltip-rails'
+
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 
 gem 'awesome_print', require: 'ap'

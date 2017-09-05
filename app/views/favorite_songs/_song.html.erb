@@ -1,3 +1,4 @@
+<% @songs.each do |song| %>
 <tr>
   <th scope="row"><%= link_to song.id, song_path(song) %></th>
 <% if logged_in? %>
@@ -12,13 +13,14 @@
         <% end %>
       <% end %>
     </td>
-  <td><%= link_to song.name, song_path(song) %></td>
+  <td><%= link_to song.name, song_path(song)%></td>
   <td><%= link_to song.artist.name, artist_path(song.artist_id)%></td>
   <td><%= link_to song.album.name, album_path(song.album_id)%></td>
   <td><%= link_to song.length, song_path(song)%></td>
     <td>
       <%= link_to song.youtube_link, target: :_blank do %>
        <i class="fa fa-play" aria-hidden="true" rel="tooltip" data-placement="top" title="Press to play on YouTube"></i>
+      <% end %>
     </td>
 
     <% if current_user.playlists.first.nil? %>
@@ -37,4 +39,4 @@
     <% end %>
   <% end %>
 </tr>
-<% end %>
+<% end -%>

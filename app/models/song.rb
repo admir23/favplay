@@ -7,7 +7,9 @@ class Song < ApplicationRecord
 	has_many :artists
   has_many :playlist_songs, dependent: :destroy
   has_many :playlists, through: :playlist_songs
-	has_many :favorited, through: :favorites, source: :users
+
+  has_many :favorites
+	has_many :favorited_by, through: :favorites, source: :users
 
   validates_presence_of :name, :youtube_link, :length
   validates_length_of :name, maximum: 15
