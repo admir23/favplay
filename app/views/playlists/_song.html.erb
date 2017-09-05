@@ -1,11 +1,8 @@
-<div class="panel-heading">songs <span class="badge"><%= @playlist.songs.count %></span>
-</div>      
-  <table class = 'table table-striped table-hover'>
+  <table class="table pt-5">
     <thead>
 			<tr>
     		<th>Name</th>
-    		<th>Duration</th>
-    		<th>Actions</th>
+    		<th>Length</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -14,23 +11,27 @@
 				<td><%= link_to song.name, song_path(song) %></td>	
 				<td><%= song.length %></td>		
 				<td>
-				<% if logged_in? %>a
+				<% if logged_in? %>
 					<% unless current_user.favorite_songs.exists?(id: song.id) %>
 						<%= link_to favorite_songs_path(song_id: song), method: :post do %>
-						<span class="glyphicon glyphicon-heart-empty gi-2x" role="button" aria-hidden="true"></span>
+						<i class="fa fa-heart-o" aria-hidden="true"></i>
 					<% end %>
 					<% else %>
 						<%= link_to favorite_song_path(song), method: :delete do %>
-						<span class="glyphicon glyphicon-heart gi-2x" role="button" aria-hidden="true"></span>
+						<i class="fa fa-heart" aria-hidden="true"></i>
 						<% end %>
-					<% end %>
-				
-					<%= link_to song.youtube_link, target: :_blank do %>
-					<span class="glyphicon glyphicon-play gi-2x" role="button" aria-hidden="true"></span>
 					<% end %>
 				</td>
 				<td>
-					<%= link_to 'Remove from playlist', playlist_song_path(song_id: song.id, playlist_id: @playlist.id), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger' %>
+					<%= link_to song.youtube_link, target: :_blank do %>
+					<i class="fa fa-play" aria-hidden="true"></i>
+					<% end %>
+        </td>
+        <td>
+					<%= link_to playlist_song_path(song_id: song.id, playlist_id: @playlist.id), method: :delete do %>
+					<i class="fa fa-times" aria-hidden="true"></i>
+					<% end %>
+
 				</td>
 				<% end %>
 			</tr>

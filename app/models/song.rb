@@ -5,7 +5,7 @@ class Song < ApplicationRecord
 	belongs_to :user
 
 	has_many :artists
-  has_many :playlist_songs
+  has_many :playlist_songs, dependent: :destroy
   has_many :playlists, through: :playlist_songs
 	has_many :favorited, through: :favorites, source: :users
 
