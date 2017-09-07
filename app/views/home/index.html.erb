@@ -19,6 +19,14 @@
 								<hr class="my-1">
 								<p>Ask for help if needed</p>
 		      <% end %>
+			      <div class="row">
+		    			<%= form_tag(songs_path, method: :get, class: 'input-group') do %>
+						  <%= text_field_tag :term, params[:term], class: 'form-control', placeholder: 'Search for...' %>
+						  <span class="input-group-btn">
+						  <%= submit_tag 'Search', name: nil, class: 'btn btn-secondary' %>
+						  </span>
+						  <% end %>
+						</div>  
 					</div>
 				</div>
 			</div>	

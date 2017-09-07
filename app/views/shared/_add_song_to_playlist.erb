@@ -10,9 +10,9 @@
         <%= form.collection_select :playlist_id, Playlist.where(user_id: current_user.id), :id, :name, { prompt: 'Choose Playlist' }, class: 'form-control' %>
         <br>
         <%= form.submit 'Save', method: :post, class: 'btn btn-block btn-primary' %>
-      <% end %>
-
-
+        <br>
+        <%= link_to 'Create a playlist', new_playlist_path %>
+      <% end %> 
     </div>
   </div>
 </div>

@@ -14,5 +14,14 @@ class Song < ApplicationRecord
   validates_presence_of :name, :youtube_link, :length
   validates_length_of :name, maximum: 15
 
+  def self.search(term)
+	  if term
+	    where('name LIKE ?', "%#{term}%").order('id DESC')
+	  else
+	    all
+	  end
+  end
+  
+end  
+
 	
-end

@@ -1,13 +1,22 @@
-<div class="row mt-5">
-	<div class="container mt-5">
-		<div class="col-md-8 offset-md-2">
-			<p id="notice"><%= notice %></p>
-			 <h3><%= @playlist.name %></h3>
-			<br>	
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-md-4"> 
+		<p id="notice"><%= notice %></p>
+		 <h3><%= @playlist.name %></h3>
+		 </div>
+		 <div class="col-md-9 push-md-9">
+			<%= link_to "Add songs", songs_path, class:'btn btn-primary' %>
+		 </div>
+		</div>		  
+		<br>	
+		<div class="row">
+			<div class="col-md-12"> 
 		  <%= render 'song' %>
-      <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
+	    <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 			<%= link_to 'Back', playlists_path %>
-	  </div>
-	</div>
-</div>	
+      </div>
+    </div> 
+</div>
+
 

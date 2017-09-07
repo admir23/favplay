@@ -3,6 +3,7 @@ class SongsController < ApplicationController
 
 	 def index
 	 	@songs = Song.all
+	 	@songs = Song.search(params[:term])
 	 end
 	 
 	 def new
@@ -45,7 +46,7 @@ class SongsController < ApplicationController
 	 private
 
 	 def songs_params
-	 	params.require(:song).permit(:name, :length, :youtube_link, :artist_id, :album_id, :genre_id);	
+	 	params.require(:song).permit(:name, :length, :youtube_link, :artist_id, :album_id, :genre_id, :term);	
 	 end
 	 
 	 def find_song

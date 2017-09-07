@@ -30,7 +30,7 @@
       </td>
     <% else %>
       <td>
-        <a data-toggle="modal" data-target="#addSong" data-id="<%= song.id %>" title="Add this song to playlist" class="open-AddSong btn btn-sm btn-success" href="#addSong">Add to playlist</a>
+        <a data-toggle="modal" data-target="#addSong" data-id="<%= song.id %>" title="Add this song to playlist" class="open-AddSong" href="#addSong"><i class="fa fa-plus" aria-hidden="true" rel="tooltip" data-placement="top" title="Add to playlist"></i></a>
 
         <div class="modal fade" id="addSong">
           <%= render 'shared/add_song_to_playlist' %>

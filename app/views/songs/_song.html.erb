@@ -19,22 +19,14 @@
     <td>
       <%= link_to song.youtube_link, target: :_blank do %>
        <i class="fa fa-play" aria-hidden="true" rel="tooltip" data-placement="top" title="Press to play on YouTube"></i>
+    </td>  
+    <td>
+      <a data-toggle="modal" data-target="#addSong" data-id="<%= song.id %>" title="Add this song to playlist" class="open-AddSong" href="#addSong"><i class="fa fa-plus" aria-hidden="true" rel="tooltip" data-placement="top" title="Add to playlist"></i></a>
+
+      <div class="modal fade" id="addSong">
+        <%= render 'shared/add_song_to_playlist' %>
+      </div>
     </td>
-
-    <% if current_user.playlists.first.nil? %>
-      <td>
-        <a data-toggle="modal" href="#myModal" class="btn btn-sm btn-danger">Add New playlist</a>
-        <%= render 'shared/new_playlist' %>
-      </td>
-    <% else %>
-      <td>
-        <a data-toggle="modal" data-target="#addSong" data-id="<%= song.id %>" title="Add this song to playlist" class="open-AddSong btn btn-sm btn-success" href="#addSong">Add to playlist</a>
-
-        <div class="modal fade" id="addSong">
-          <%= render 'shared/add_song_to_playlist' %>
-        </div>
-      </td>
-    <% end %>
   <% end %>
-</tr>
+  </tr>
 <% end %>
