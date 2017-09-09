@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+
   namespace :admin do
     resource :dashboard, only: [:show]
   end
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
   resources :artists
   resources :favorite_songs
   resources :playlist_songs
+  
  
 end

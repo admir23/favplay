@@ -42,8 +42,10 @@
   height: 50%;
 }
 
-.img-thumbnail {
-  height: 325px;
+.card-img-top {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 // Custom Css
@@ -107,4 +109,18 @@ section {
 .form-error-text {
   color: red;
   font-weight: 300;
+}
+
+.table {
+  counter-reset: rowNumber;
+}
+
+.table tr {
+  counter-increment: rowNumber;
+}
+
+.table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  margin-right: 0.5em;
 }

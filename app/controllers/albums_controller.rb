@@ -36,7 +36,7 @@ class AlbumsController < ApplicationController
 
 
 	def show
-  
+       @songs = @album.songs
 	end
 
 	def destroy
