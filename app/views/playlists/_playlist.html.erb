@@ -2,14 +2,14 @@
   <div class="card"><!-- Panel Info -->
     <div class="card-block">
       <h3 class="card-title"><%= link_to playlist.name, playlist_path(playlist) %></h3>
-      <p class="card-text"><%= time_ago_in_words(playlist.created_at) %></p>
+      <p class="card-text">Created: <%= time_ago_in_words(playlist.created_at) %> ago</p>
       <p class="card-text"><%= playlist.description %></p>
       <br>
       <div class="btn-group" role="group" aria-label="...">
-          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdateplaylist_<%= playlist.id %>">
+          <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myupdateplaylist_<%= playlist.id %>">
             Edit
           </button>
-          <%= link_to 'Delete', playlist_path(playlist), method: :delete, class: "btn btn-danger", remote: true %>
+          <%= link_to 'Delete', playlist_path(playlist), method: :delete, class: "btn btn-sm btn-danger", remote: true %>
       </div>
     </div>
   </div>

@@ -7,12 +7,14 @@
   	  </div>
   	</div>
   	<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-  		<h3><%= link_to @album.name, album_path(@album) %></h3>
-		  <p>Artist: <%= link_to @album.artist.name, artist_path(@album.artist) %></p>
-		  <p>Created: <%= time_ago_in_words(@album.created_at) %></p>
-		  <p>Released: <%= @album.released %></p>
-   	  <%= link_to 'Edit', edit_album_path(@album), class:'btn btn-primary'%>
-		  <%= link_to 'Delete', album_path(@album), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-danger'%>
+  		<h3><%= @album.name %></h3>
+		  <p class="album text-muted">Artist: <%= link_to @album.artist.name, artist_path(@album.artist) %></p>
+		  <p class="album text-muted">Created: <%= time_ago_in_words(@album.created_at) %> ago</p>
+		  <p class="album text-muted">Released: <%= @album.released %></p>
+		  <p class="album text-muted">Genre: <%= link_to @album.genre.name, genre_path(@album.genre) %></p>
+		  <br>
+   	  <%= link_to 'Edit', edit_album_path(@album), class:'btn btn-sm btn-secondary'%>
+		  <%= link_to 'Delete', album_path(@album), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger'%>
   	</div>
 		<div class="container">
 			<table class="table pt-5 mt-4">

@@ -12,7 +12,7 @@ class Song < ApplicationRecord
 	has_many :favorited_by, through: :favorites, source: :users
 
   validates_presence_of :name, :youtube_link, :length
-	validates_length_of :name, maximum: 15
+	validates_length_of :name, maximum: 55
 	
 	
 

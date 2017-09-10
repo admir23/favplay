@@ -2,8 +2,8 @@ class AlbumsController < ApplicationController
 	before_action :find_album, { only: [:edit, :update, :show, :destroy] }
 
 	def index
-		@albums = Album.all
-	end
+		@albums = Album.paginate(:page => params[:page], :per_page => 4).order(created_at: :desc)
+  end
 	
 	def new
 		@album = Album.new
@@ -36,7 +36,8 @@ class AlbumsController < ApplicationController
 
 
 	def show
-       @songs = @album.songs
+     @songs = @album.songs
+     @artist = @album.artist
 	end
 
 	def destroy

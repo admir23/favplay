@@ -1,5 +1,5 @@
-<div class="row mt-5">
-	<div class="container">
+<div class="container">
+  <div class="row mt-5">
 		<div class="col-md-4 offset-md-4">
 			<h1>Songs <%= link_to 'Add new', new_song_path, class: 'btn btn-primary' %></h1>
 			<br>
@@ -10,6 +10,7 @@
 		  </span>
 		<% end %>
 		</div>
+		<br>
 		<br>
 		<table class="table pt-5 mt-4">
 	    <thead>
@@ -27,5 +28,10 @@
 		    <%= render @songs %>
 		  </tbody>
 	  </table>
-	</div>
+	 </div>
+   <div class="row">
+    <div class="container">
+      <div class="col-md-4 offset-md-4">
+       <%= will_paginate(@songs, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %> 
+    </div>
 </div>	 	

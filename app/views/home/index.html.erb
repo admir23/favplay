@@ -1,35 +1,44 @@
+<% unless logged_in? %>
 <section id="splash-blue">
 	<div class="layer">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 jumbotron">
 					<div class="to-center text-center">
-					<% unless logged_in? %>
-						<h1 class="display-3">Fav Play</h1>
-						<br>
-						<p class="lead">Create ultimate playlists with your favorite artists!</p>
-						<p>Create an account with us, or simply log in below!</p>
-						<p class="lead">
-							<%= link_to 'Log in', login_path, class: "btn btn-primary" %>
-							<%= link_to 'Sign up!', new_user_path, class: "btn btn-primary" %>
-						</p>	
-					<% else %>
-		        <h1 class="display-3">Your Playlist Below</h1>
-						<p class="lead">Start now!</p>
-								<hr class="my-1">
-								<p>Ask for help if needed</p>
-		      <% end %>
-			      <div class="row">
-		    			<%= form_tag(songs_path, method: :get, class: 'input-group') do %>
-						  <%= text_field_tag :term, params[:term], class: 'form-control', placeholder: 'Search for...' %>
-						  <span class="input-group-btn">
-						  <%= submit_tag 'Search', name: nil, class: 'btn btn-secondary' %>
-						  </span>
-						  <% end %>
-						</div>  
-					</div>
+							<h1 class="display-3">Fav Play</h1>
+							<br>
+							<p class="lead">Create ultimate playlists with your favorite artists!</p>
+							<p>Create an account with us, or simply log in below!</p>
+							<p class="lead">
+								<%= link_to 'Log in', login_path, class: "btn btn-primary" %>
+								<%= link_to 'Sign up!', new_user_path, class: "btn btn-primary" %>
+							</p>	
+						</div>
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
-</section>	
+</section>
+	<% else %>
+<div class="container">
+  <div class="col-sm-6 col-md-6 col-lg-3 mt-4"> 
+		<table class="table table-hover">
+	  	<thead>
+	   	 <h3>Popular Songs</h3>
+	     <br>
+	  	</thead>
+	  	<tbody>
+	    	<% @top_songs.each do |song| %>
+					<tr>
+						<td data-title="Name"><%= link_to song.name, song_path(song) %></td>
+						<td data-title="Artist"><%= link_to Artist.find(song.artist_id).name, artist_path(Artist.find(song.artist_id)) %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	&nbsp; 
+  <%= render 'latest_albums' %>
+</div>
+</div>
+<% end %>	

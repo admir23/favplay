@@ -19,6 +19,7 @@
  @import "bootstrap";
  @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
 
+
 // modifed bootstrap
 .jumbotron {
     color: white;
@@ -53,6 +54,7 @@
 html, body {
   height: 100%;
   font-family: Oswald, sans-serif;
+
 }
 
 
@@ -124,3 +126,18 @@ section {
   min-width: 1em;
   margin-right: 0.5em;
 }
+
+.artist {
+  font-size: 12px;
+  color: #72727d;
+  padding: 0;
+}
+
+.album {
+  font-size: 14px;
+  font-weight: lighter;
+  color: #72727d; 
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+}
+

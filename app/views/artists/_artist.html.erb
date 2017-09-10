@@ -1,14 +1,13 @@
-<div class="col-md-4 p-3">
+<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 	<div class="card">
-	 <%=image_tag artist.artist_image, class: "card-img-top img-thumbnail " %>
+	 <%= link_to artist_path(artist) do %>
+	   <%=image_tag artist.artist_image, class: "card-img-top" %>
+	 <% end %>   
 		<div class="card-block">
-		  <h3 class="card-title">Artist: <%= link_to artist.name, artist_path(artist) %></h3>
-		  <p class="card-text">Genre: <%= link_to artist.genre.name, genre_path(artist.genre) %></p>
-		  <p class="card-text">Created: <%= time_ago_in_words(artist.created_at) %></p>
-		  
+		  <p><%= link_to artist.name, artist_path(artist) %></p>
 		  <br>
-		  <%= link_to 'Edit', edit_artist_path(artist), class:'btn btn-primary'%>
-		  <%= link_to 'Delete', artist_path(artist), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-danger'%>
+		  <%= link_to 'Edit', edit_artist_path(artist), class:'btn btn-sm btn-secondary'%>
+		  <%= link_to 'Delete', artist_path(artist), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger'%>
 		</div>
 	</div>
 </div>

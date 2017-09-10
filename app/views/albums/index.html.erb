@@ -8,8 +8,15 @@
 		<hr>
 	  <div class="row">
 		  <%= render @albums %>
-		</div>  
+		</div> 
   </div>
+  <div class="row">
+    <div class="container">
+      <div class="col-md-4 offset-md-4">
+       <%= will_paginate(@albums, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %> 
+      </div>
+    </div>
+  </div> 
 </div> 
 
 
