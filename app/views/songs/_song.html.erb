@@ -1,17 +1,9 @@
 <tr>
   <th scope="row"><%= song.id %></th>
 <% if logged_in? %>
-    <td>
-      <% unless current_user.favorite_songs.exists?(id: song.id) %>
-        <%= link_to favorite_songs_path(song_id: song), method: :post, remote: true do %>
-          <i class="fa fa-heart-o" aria-hidden="true" rel="tooltip" data-placement="top" title="Add to favorites"></i>
-        <% end %>
-      <% else %>
-        <%= link_to favorite_song_path(song), method: :delete, remot: true do %>
-          <i class="fa fa-heart" aria-hidden="true" rel="tooltip" data-placement="top" title="Remove from favorites"></i>
-        <% end %>
-      <% end %>
-    </td>
+  
+  <td><%= link_to_toggle_user_favoriting(song: @song, user: current_user)%></td>
+
   <td><%= link_to song.name, song_path(song) %></td>
   <td><%= link_to song.artist.name, artist_path(song.artist_id)%></td>
   <td><%= link_to song.album.name, album_path(song.album_id)%></td>

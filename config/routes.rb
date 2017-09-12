@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   resources :artists
   resources :favorite_songs
   resources :playlist_songs
+
+  resources :songs do
+    resource :favorite_song
+   end
   
  
 end

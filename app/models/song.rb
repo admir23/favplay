@@ -13,6 +13,28 @@ class Song < ApplicationRecord
 
   validates_presence_of :name, :youtube_link, :length
 	validates_length_of :name, maximum: 55
+
+	def favorited?
+    favorited_at != nil
+  end
+
+  def favorite
+    self.favorited_at = Time.now
+  end
+
+  def favorite!
+    favorite
+    save!
+  end
+
+  def unfavorite
+    self.favorited_at = nil
+  end
+
+  def unfavorite!
+    unfavorite
+    save!
+  end
 	
 	
 
