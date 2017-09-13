@@ -16,7 +16,7 @@
 //= require bootstrap/bootstrap-tooltip
 //= require bootstrap
 //= require turbolinks
-//= require_tree 
+//= require_tree .
 
 
 // tooltip

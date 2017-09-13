@@ -1,17 +1,9 @@
+<% @songs.each do |song| %>
 <tr>
   <th scope="row"><%= song.id %></th>
 <% if logged_in? %>
   
-  <td>
 
-          <div class="like">
-
-              <div class="like-btn text-center" song_id="<%= song.id %>">
-                <span class="<%= song.heart_class(current_user) %>"></span>
-              </div>
-
-            <div class="likes-message"><%= song.likes_message(current_user) %></div>
-    </td>
 
   <td><%= link_to song.name, song_path(song) %></td>
   <td><%= link_to song.artist.name, artist_path(song.artist_id)%></td>
@@ -27,8 +19,9 @@
 
       <div class="modal fade" id="addSong">
         <%= render 'shared/add_song_to_playlist' %>
-      </div>
+      </div> 
     </td>
+    <% end %>
   <% end %>
   </tr>
 <% end %>

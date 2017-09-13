@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  
+  post '/song:id/like' => 'songs#like', as: :like
+
 
   namespace :admin do
     resource :dashboard, only: [:show]
@@ -17,10 +20,12 @@ Rails.application.routes.draw do
   resources :artists
   resources :favorite_songs
   resources :playlist_songs
+  resources :favorites
 
-  resources :songs do
-    resource :favorite_song
-   end
+  # resources :songs do
+  #   resource :favorites
+  #  end
   
+
  
 end

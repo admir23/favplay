@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-	before_action :find_song, {only: [:edit, :update, :show, :destroy, :vote]}
+	before_action :find_song, {only: [:edit, :update, :show, :like]}
 
 	def index
 	 	@songs = Song.all
@@ -46,14 +46,19 @@ class SongsController < ApplicationController
 	 	flash[:notice] = 'Song deleted successfully'
 	 	redirect_to songs_path
 	 end
+   
 
-	 def vote
-		if !current_user.liked? @song
-		@song.liked_by current_user
-		elsif current_user.liked? @song
-		@song.unliked_by current_user
-		end	
-	end
+   def like
+    @song = Song.find(params[:id])
+    @song.update_likes(current_user)
+    message = @song.likes_message(current_user)
+
+    respond_to do |format|
+      format.json { render json: {message: message} }
+      format.html { redirect_to root_path }
+    end
+  end
+
 
 	 private
 
