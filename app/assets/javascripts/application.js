@@ -15,8 +15,8 @@
 //= require tether
 //= require bootstrap/bootstrap-tooltip
 //= require bootstrap
-//= require turbolinks
 //= require_tree .
+
 
 
 // tooltip

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # has_many :favorite_songs, through: :favorites, source: :song
 
   has_many :favorites
-  has_many  :songs, through: :favorites
+  has_many :favorited_by, through: :favorites, source: :song
 
   has_many :albums
   has_many :artists

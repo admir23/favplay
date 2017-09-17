@@ -7,14 +7,13 @@ $(document).ready(function(){
 
     // this function toggles the heart button and updates the text (called after ajax success)
     function updateLikes($btn, results){
-      $btn.find('span').toggleClass('grey-heart red-heart');
-      $btn.parent().find('.likes-message').html(results.message);
+      $btn.find('span').toggleClass('red-heart');
     }
 
     // post request to the rails controller
     $.ajax({
       type: 'POST',
-      url:'/song' +songId+ '/like',
+      url:'/song' +songId+ '/favorite',
       success: function(results){
         updateLikes($btn, results);
       }

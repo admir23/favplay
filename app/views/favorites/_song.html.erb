@@ -1,27 +1,25 @@
-<% @songs.each do |song| %>
+ <% if logged_in? %>
+<% @songs.each_with_index do|song, i| %>
 <tr>
-  <th scope="row"><%= song.id %></th>
-<% if logged_in? %>
-  
-
-
-  <td><%= link_to song.name, song_path(song) %></td>
-  <td><%= link_to song.artist.name, artist_path(song.artist_id)%></td>
-  <td><%= link_to song.album.name, album_path(song.album_id)%></td>
-  <td><%= link_to song.length, song_path(song)%></td>
-  <td><%= link_to song.genre.name, genre_path(song.genre_id)%></td>
-    <td>
-      <%= link_to song.youtube_link, target: :_blank do %>
-       <i class="fa fa-play" aria-hidden="true" rel="tooltip" data-placement="top" title="Press to play on YouTube"></i>
-    </td>  
-    <td>
-      <a data-toggle="modal" data-target="#addSong" data-id="<%= song.id %>" title="Add this song to playlist" class="open-AddSong" href="#addSong"><i class="fa fa-plus" aria-hidden="true" rel="tooltip" data-placement="top" title="Add to playlist"></i></a>
-
-      <div class="modal fade" id="addSong">
-        <%= render 'shared/add_song_to_playlist' %>
-      </div> 
-    </td>
-    <% end %>
+  <th scope="row"><%= (i+1) %></th>
+  <td>
+    <div class="">
+      <div class="like-btn text-center" data-remote="true" song_id="<%= song.id %>">
+        <span class="<%= song.song.heart_class(current_user) %>"></span>
+      </div>
+  </td>
+  <td><%= link_to song.song.name,song_path(song.song.id) %></td> 
+  <td><%= link_to song.song.artist.name, artist_path(song.song.artist.id)%></td>
+  <td><%= link_to song.song.album.name, album_path(song.song.album.id)%></td>
+  <td><%= link_to song.song.length, song_path(song.song.id)%></td>
+  <td><%= link_to song.song.genre.name, genre_path(song.song.genre_id)%></td>
+  <td><a data-toggle="modal" data-target="#addSong" data-id="<%= song.id %>" title="Add this song to playlist" class="open-AddSong" href="#addSong"><i class="fa fa-plus" aria-hidden="true" rel="tooltip" data-placement="top" title="Add to playlist"></i></a>
+  <div class="modal fade" id="addSong">
+    <%= render 'shared/add_song_to_playlist' %>
+  </div>
+  </td>
   <% end %>
-  </tr>
+</tr>
 <% end %>
+
+  

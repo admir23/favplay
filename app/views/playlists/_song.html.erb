@@ -1,8 +1,9 @@
+<% if logged_in? %>
 <table class="table pt-5">
   <thead>
 		<tr>
 		  <th>#</th>
-		  <th></th>
+		  <th width="10px"></th>
   		<th>Name</th>
   		<th>Length</th>
 		</tr>
@@ -10,19 +11,13 @@
 	<tbody>
   <% @playlist.songs.each_with_index do |song, i| %>
    <tr>
-  <th scope="row"><%= (i+1) %></th>
-			<td>
-			<% if logged_in? %>
-				<% unless current_user.favorite_songs.exists?(id: song.id) %>
-					<%= link_to favorite_songs_path(song_id: song), method: :post do %>
-					<i class="fa fa-heart-o" aria-hidden="true" rel="tooltip" data-placement="top"  title="Add to favorites"></i>
-				<% end %>
-				<% else %>
-					<%= link_to favorite_song_path(song), method: :delete do %>
-					<i class="fa fa-heart" aria-hidden="true" rel="tooltip" data-placement="top"  title="Remove from favorites"></i>
-					<% end %>
-				<% end %>
-			</td>
+   <th scope="row" width="10px"><%= (i+1) %></th>
+	 <td>
+      <div class="">
+         <div class="like-btn text-center" song_id="<%= song.id %>">
+           <span class="<%= song.heart_class(current_user) %>"></span>
+      </div>
+		</td>
 			<td><%= link_to song.name, song_path(song) %></td>	
 			<td><%= song.length %></td>		
 			<td>
@@ -31,11 +26,10 @@
 				<% end %>
       </td>
       <td>
-				<%= link_to playlist_song_path(song_id: song.id, playlist_id: @playlist.id), method: :delete do %>
+      	<%= link_to playlist_song_path(song_id: song.id, playlist_id: @playlist.id), method: :delete do %>
 				<i class="fa fa-times" aria-hidden="true"></i>
 				<% end %>
-
-			</td>
+      </td>
 			<% end %>
 		</tr>
 	<% end %>

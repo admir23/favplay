@@ -2,7 +2,6 @@ class SongsController < ApplicationController
 	before_action :find_song, {only: [:edit, :update, :show, :like]}
 
 	def index
-	 	@songs = Song.all
 	 	@songs = Song.search(params[:term]).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
 	 	@top_songs = Favorite.joins("LEFT OUTER JOIN songs ON favorites.song_id = songs.id").select("favorites.*,songs.name as name, songs.artist_id as artist_id").group(:song_id).order('COUNT(songs.id) DESC')
   .limit(10)
@@ -48,10 +47,10 @@ class SongsController < ApplicationController
 	 end
    
 
-   def like
+   def favorite
     @song = Song.find(params[:id])
-    @song.update_likes(current_user)
-    message = @song.likes_message(current_user)
+    @song.update_favorites(current_user)
+    message = @song.favorites_message(current_user)
 
     respond_to do |format|
       format.json { render json: {message: message} }
