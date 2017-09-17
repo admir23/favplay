@@ -1,0 +1,5 @@
+<% @top_songs.each_with_index do |song, i| %>
+ <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= (i+1) %>&nbsp;&nbsp;<%= link_to song.name, song_path(song) %></li>
+  </ul>
+<% end %>
