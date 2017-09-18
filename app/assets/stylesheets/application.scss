@@ -46,9 +46,19 @@
 .card-img-top {
   display: block;
   width: 100%;
+  max-width: 204px;
   height: auto;
 }
 
+.list-group-flush .list-group-item {
+  background-color: #292b2c;
+
+ }
+ 
+ .nav-orange {
+  color: orange;
+
+ } 
 // Custom Css
 
 html, body {
@@ -57,6 +67,14 @@ html, body {
 
 }
 
+
+a {
+  color: #72727d;
+}
+
+a:hover {
+  color: #563d7c;
+}
 
 section {
     position: relative;
@@ -143,3 +161,14 @@ section {
  .red-heart {
    color: red;
  }
+
+.home-card {
+    color: #72727d;
+    background-color: #292b2c;
+
+}  
+
+.page-item.active .page-link {
+    background-color: #292b2c;
+    border-color: #292b2c;
+}  

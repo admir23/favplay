@@ -5,87 +5,46 @@
 			<div class="row">
 				<div class="col-md-12 jumbotron">
 					<div class="to-center text-center">
-							<h1 class="display-3">Fav Play</h1>
-							<br>
-							<p class="lead">Create ultimate playlists with your favorite artists!</p>
-							<p>Create an account with us, or simply log in below!</p>
-							<p class="lead">
-								<%= link_to 'Log in', login_path, class: "btn btn-primary" %>
-								<%= link_to 'Sign up!', new_user_path, class: "btn btn-primary" %>
-							</p>	
-						</div>
+						<h1 class="display-3">Fav Play</h1>
+						<br>
+						<p class="lead">Create ultimate playlists with your favorite artists!</p>
+						<p>Create an account with us, or simply log in below!</p>
+						<p class="lead">
+							<%= link_to 'Log in', login_path, class: "btn btn-primary" %>
+							<%= link_to 'Sign up!', new_user_path, class: "btn btn-primary" %>
+						</p>	
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 	<% else %>
-<div class="container">
-	<div class="col-md-4 offset-md-4">
-   <h1>Lista Pjesama</h1>
-   <table class="table pt-5 mt-4">
-	    <thead>
-	      <tr>
-	        <th>#</th>
-	        <th width="10%"></th>
-	        <th>Song</th>
-	        <th>Artist</th>
-	        <th>Album</th>
-	        <th>Length</th>
-	        <th>Genre</th>
-	      </tr>
-	    </thead>
-		  <tbody>
-		 <% @songs.each do |song| %>
-				<tr>
-				  <th scope="row"><%= song.id %></th>
-				<% if logged_in? %>
-				  <td>
-				    <div class="">
-				      <div class="like-btn text-center" song_id="<%= song.id %>">
-				        <span class="<%= song.heart_class(current_user) %>"></span>
-				      </div>
+	<div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <div class="col-xs-8 col-sm-8">
+        <div class="row">
+          <%= render 'songs' %>
+        </div>
+      </div>  
+        <!--/row-->
+      <!--/.col-xs-12.col-sm-9-->
+      <div class="col-xs-1 col-sm-4 sidebar-offcanvas mt-5 pt-5" id="sidebar">
+        <div class="card home-card">
+			    <div class="card-block">
+				   	 <h4 class="card-title">Popular Songs</h4>
+				     <%= render 'popular_songs' %>
+			       <div class="mt-5">
+			       	<h4 class="card-title">Latest Albums</h4>
+				      <%= render 'latest_albums' %>
 				    </div>
-				  </td>
-				  <td><%= link_to song.name, song_path(song) %></td>
-				  <td><%= link_to song.artist.name, artist_path(song.artist_id)%></td>
-				  <td><%= link_to song.album.name, album_path(song.album_id)%></td>
-				  <td><%= link_to song.length, song_path(song)%></td>
-				  <td><%= link_to song.genre.name, genre_path(song.genre_id)%></td>
-				    <td>
-				      <%= link_to song.youtube_link, target: :_blank do %>
-				       <i class="fa fa-play" aria-hidden="true" rel="tooltip" data-placement="top" title="Press to play on YouTube"></i>
-				    </td>  
-				    <td>
-				      <a data-toggle="modal" data-target="#addSong" data-id="<%= song.id %>" title="Add this song to playlist" class="open-AddSong" href="#addSong"><i class="fa fa-plus" aria-hidden="true" rel="tooltip" data-placement="top" title="Add to playlist"></i></a>
-
-				      <div class="modal fade" id="addSong">
-				        <%= render 'shared/add_song_to_playlist' %>
-				      </div>
-				     <% end %> 
-				    </td>
-				  <% end %>
-				  </tr>
-				<% end %>
-		  </tbody>
-	  </table>
-	 </div>
-   <div class="row">
-    <div class="container">
-      <div class="col-md-4 offset-md-4">
-       <%= will_paginate(@songs, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %> 
-    </div>
-</div>	 	
-	</div>	
-  <div class="col-sm-6 col-md-6 col-lg-3 mt-4"> 
-		<div class="card">
-			<div class="card-block">
-	   	 <h4 class="card-title">Popular Songs</h4>
-	   	</div> 
-	    <%= render 'popular_songs' %>
-	  </div>
-	&nbsp; 
-  <%= render 'latest_albums' %>
- </div>
-</div>
+          </div>
+        </div>
+      <!--/.sidebar-offcanvas-->
+      </div>
+    <!--/row-->
 <% end %>	
+</div>
+</div>
+</div>
+

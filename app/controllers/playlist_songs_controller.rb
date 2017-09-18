@@ -1,6 +1,6 @@
 class PlaylistSongsController < ApplicationController
 
-def create
+  def create
     @song = Song.find(params[:songId])
     @playlist = Playlist.find(params[:playlist_song][:playlist_id] || params[:id])
     unless PlaylistSong.find_by(song_id: @song.id, playlist_id: @playlist.id)
