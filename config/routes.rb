@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   post '/song:id/favorite', to: 'songs#favorite', as: :favorite
-  # delete '/song:id/unlike', to: 'favorites#unlike', as: :unlike
+  delete '/song:id/favorite', to: 'favorites#destroy', as: :destroy
   
   namespace :admin do
     resource :dashboard, only: [:show]

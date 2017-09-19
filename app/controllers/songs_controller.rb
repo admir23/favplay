@@ -50,13 +50,15 @@ class SongsController < ApplicationController
    def favorite
     @song = Song.find(params[:id])
     @song.update_favorites(current_user)
-    message = @song.favorites_message(current_user)
+    @current_user = current_user
 
     respond_to do |format|
+    	format.js
       format.json { render json: {message: message} }
       format.html { redirect_to root_path }
     end
   end
+
 
 
 	 private

@@ -16,12 +16,14 @@
 			<tr>
 			  <th scope="row"><%= song.id %></th>
 			<% if logged_in? %>
-			  <td>
-			    <div class="">
-			      <div class="like-btn text-center" song_id="<%= song.id %>">
-			        <span class="<%= song.heart_class(current_user) %>"></span>
-			      </div>
-			    </div>
+		 <td>
+		    <div class="">
+		      <%= link_to favorite_path(id: song.id), method: :post , remote: true do %>
+		      <div class="like-btn text-center" song_id="<%= song.id %>">
+		        <span class="<%= song.heart_class(current_user) %>"></span>
+		      </div>
+		      <% end %>
+		    </div>
 			  </td>
 			  <td><%= link_to song.name, song_path(song) %></td>
 			  <td><%= link_to song.artist.name, artist_path(song.artist_id)%></td>

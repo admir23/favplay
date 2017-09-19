@@ -13,11 +13,14 @@
    <tr>
    <th scope="row" width="10px"><%= (i+1) %></th>
 	 <td>
-      <div class="">
-         <div class="like-btn text-center" song_id="<%= song.id %>">
-           <span class="<%= song.heart_class(current_user) %>"></span>
-      </div>
-		</td>
+	    <div class="">
+	      <%= link_to favorite_path(id: song.id), method: :post , remote: true do %>
+	      <div class="like-btn text-center" song_id="<%= song.id %>">
+	        <span class="<%= song.heart_class(current_user) %>"></span>
+	      </div>
+	      <% end %>
+	    </div>
+      </td>
 			<td><%= link_to song.name, song_path(song) %></td>	
 			<td><%= song.length %></td>		
 			<td>

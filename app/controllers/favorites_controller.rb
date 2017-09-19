@@ -6,19 +6,15 @@ class FavoritesController < ApplicationController
   .limit(10)
   end
 
-
-  # def unlike
-  #   @song = Song.find(params[:id])
-  #   @song.unlike(current_user)
-
-  #   respond_to do |format|
-  #     format.json { render json: {message: message} }
-  #     format.html { redirect_to root_path }
-  #   end
-  # end
+  
+  def destroy
+    @favorite = Favorite.find(params[:id])
+    @favorite.destroy
+    redirect_to favorites_path
+  end
 
   
-private
+  private
 
   def favorites_params
     params.require(:favorites).permit(:song_id, :user_id)
