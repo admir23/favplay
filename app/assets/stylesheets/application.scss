@@ -51,14 +51,29 @@
 }
 
 .list-group-flush .list-group-item {
-  background-color: #292b2c;
+   background-color: #292b2c;
 
  }
  
  .nav-orange {
-  color: orange;
+   color: orange;
 
  } 
+
+ .btn-primary {
+   background-color: #7561ab;
+   border-color: #7561ab;
+   
+
+ }
+ 
+ .btn-primary:hover {
+   background-color: orange;
+   border-color: orange;
+   
+
+ }
+
 // Custom Css
 
 html, body {
@@ -158,9 +173,11 @@ section {
   padding-bottom: 3px;
   margin-bottom: 3px;
 }
+
  .red-heart {
    color: red;
- }
+
+}
 
 .home-card {
     color: #72727d;
@@ -168,7 +185,11 @@ section {
 
 }  
 
+.page-link {
+  color: #7561ab;
+}
+
 .page-item.active .page-link {
-    background-color: #292b2c;
-    border-color: #292b2c;
+    background-color: #7561ab;
+    border-color: #7561ab;
 }  
