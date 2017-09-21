@@ -2,13 +2,6 @@
   <div class="row mt-5">
 		<div class="col-md-4 offset-md-4">
 			<h1>Songs <%= link_to 'Add new', new_song_path, class: 'btn btn-primary' %></h1>
-			<br>
-			<%= form_tag(songs_path, method: :get, class: 'input-group') do %>
-		  <%= text_field_tag :term, params[:term], class: 'form-control', placeholder: 'Search for...' %>
-		  <span class="input-group-btn">
-		  <%= submit_tag 'Search', name: nil, class: 'btn btn-secondary' %>
-		  </span>
-		<% end %>
 		</div>
 		<br>
 		<br>

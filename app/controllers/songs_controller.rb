@@ -1,8 +1,8 @@
 class SongsController < ApplicationController
-	before_action :find_song, {only: [:edit, :update, :show, :like]}
+	before_action :find_song, {only: [:edit, :update, :show, :favorite]}
 
 	def index
-	 	@songs = Song.search(params[:term]).paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
+	 	@songs = Song.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
 	 	@top_songs = Favorite.joins("LEFT OUTER JOIN songs ON favorites.song_id = songs.id")
 	 	                     .select("favorites.*,songs.name as name, songs.artist_id as artist_id")
 	 	                     .group(:song_id).order('COUNT(songs.id) DESC')
@@ -66,7 +66,7 @@ class SongsController < ApplicationController
 	 private
 
 	 def songs_params
-	 	params.require(:song).permit(:name, :length, :youtube_link, :artist_id, :album_id, :genre_id, :term);	
+	 	params.require(:song).permit(:name, :length, :youtube_link, :artist_id, :album_id, :genre_id)	
 	 end
 	 
 	 def find_song

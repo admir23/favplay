@@ -8,14 +8,12 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :playlists, dependent: :destroy
-  # has_many :favorites
-  # has_many :favorite_songs, through: :favorites, source: :song
 
   has_many :favorites
   has_many :favorited_by, through: :favorites, source: :song
 
   has_many :albums
-  has_many :artists
+  has_many :artistsxwxw
   has_many :songs
   has_many :genres
   

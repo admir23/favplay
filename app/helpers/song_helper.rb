@@ -1,5 +1,6 @@
 	module SongHelper
 
+
   def update_favorites(user)
     user_favorited?(user) ? unfavorite(user) : favorite(user)
   end
