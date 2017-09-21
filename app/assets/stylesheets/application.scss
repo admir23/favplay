@@ -43,11 +43,16 @@
   height: 50%;
 }
 
+.card {
+  border: 0px;
+}
+
 .card-img-top {
   display: block;
   width: 100%;
   max-width: 204px;
   height: auto;
+  border: 0px;
 }
 
 .list-group-flush .list-group-item {

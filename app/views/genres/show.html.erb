@@ -1,8 +1,28 @@
-<div class="row">
-  <div class="col-md-4 offset-md-4">
-    <p><strong>Name:</strong></p>
-    <p><%= @genre.name %></p>
-    <br>
-    <%= link_to 'Edit', edit_genre_path, class:'btn btn-primary' %>
+<div class="container mt-5">
+	<br>
+  <div class="row">
+  	<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+  		<div class="card">
+	    <h2><%= @genre.name %></h2>
+		  </div>
+  	</div>	  
+   </div>
+    <h2 class="lead mt-5">Songs that are in <%= @genre.name %> genre.</h2>
+    <table class="table pt-5 mt-4">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th></th>
+          <th>Song</th>
+          <th>Artist</th>
+          <th>Album</th>
+          <th>Length</th>
+          <th>Genre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @song %>
+      </tbody>
+    </table>
   </div>
-</div>
+</div> 

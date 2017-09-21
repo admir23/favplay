@@ -7,5 +7,6 @@ class Artist < ApplicationRecord
 
 	validates :name, presence: true, length: {maximum: 25}
 	validates :artist_image, presence: true
+	validates :artist_details, presence: true
 	
 end	

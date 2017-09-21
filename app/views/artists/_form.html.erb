@@ -3,6 +3,10 @@
 	<%= f.text_field :name, class:'form-control' %>
 	<%= error_for :name, @artist.errors %>
 	<br>	
+	<%= f.label :artist_details %>
+	<%= f.text_area :artist_details, class:'form-control' %>
+	<%= error_for :artist_details, @artist.errors %>
+	<br>	
 	<%= f.label :artist_image %>
 	<%= f.text_area :artist_image, class:'form-control' %>
 	<%= error_for :artist_image, @artist.errors %>

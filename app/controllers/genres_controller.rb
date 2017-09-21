@@ -35,6 +35,7 @@ class GenresController < ApplicationController
 
 	def show
 		@album = @genre.albums
+		@song = @genre.songs
 	end
 
   def destroy
