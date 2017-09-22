@@ -1,4 +1,5 @@
 class PlaylistSongsController < ApplicationController
+  before_action :authorize
 
   def create
     @song = Song.find(params[:songId])

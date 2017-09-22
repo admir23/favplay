@@ -1,4 +1,5 @@
 class ArtistsController < ApplicationController
+	before_action :authorize
 	before_action :find_artist, { only: [:edit, :update, :show, :destroy] }
 
 	def index

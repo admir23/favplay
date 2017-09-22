@@ -1,4 +1,5 @@
 class SongsController < ApplicationController
+	before_action :authorize
 	before_action :find_song, {only: [:edit, :update, :show, :favorite]}
 
 	def index

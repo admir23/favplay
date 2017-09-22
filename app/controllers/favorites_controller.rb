@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  before_action :authorize
 
   def index
     @songs = current_user.favorites
