@@ -1,5 +1,7 @@
 class AlbumsController < ApplicationController
 	before_action :authorize
+	before_action :authorize_for_superadmins, { only: [:edit, :destroy] }
+	before_action :authorize_for_admins, { only: [:new] }
 	before_action :find_album, { only: [:edit, :update, :show, :destroy] }
 
 	def index

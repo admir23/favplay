@@ -1,5 +1,7 @@
 class SongsController < ApplicationController
 	before_action :authorize
+	before_action :authorize_for_superadmins, { only: [:edit, :destroy] }
+	before_action :authorize_for_admins, { only: [:new] }
 	before_action :find_song, {only: [:edit, :update, :show, :favorite]}
 
 	def index
@@ -15,14 +17,14 @@ class SongsController < ApplicationController
 	 def create
 	 	@song = Song.new(songs_params)
 	 	@song.user_id = current_user.id
+		 	if @song.save
+		 		flash[:notice] = 'Song created successfully'
+		 		redirect_to songs_path
+		 	else
+		 		render :new
+		 	end
+		end
 	 	
-	 	if @song.save
-	 		flash[:notice] = 'Song created successfully'
-	 		redirect_to songs_path
-	 	else
-	 		render :new
-	 	end
-	 end
 
 	 def edit
 	 end
@@ -34,7 +36,7 @@ class SongsController < ApplicationController
 	 	else
 	 		render :edit
 	 	end
-	 end				
+	end				
 
 	 def show
 	 end

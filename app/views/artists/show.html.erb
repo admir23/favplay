@@ -11,9 +11,11 @@
     <div class="col-sm-6 col-md-6 col-lg-6 mt-4">
       <h2><%= @artist.name %></h2>
       <p class="album"><%= @artist.artist_details %></p>
-      <p class="album">Total Albums: <%= link_to @artist.albums.count, albums_path(@artist.albums) %></p>
+      <p class="album">Total Albums: <%= @artist.albums.count %></p>
+      <% if current_user.admin? || current_user.superadmin?%>
       <%= link_to 'Edit', edit_artist_path, class:'btn btn-sm btn-secondary' %>
       <%= link_to 'Delete', artist_path(@artist), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger'%>
+      <% end %>
     </div>
    </div>
     <h2 class="lead mt-5">Top 10 Songs</h2>

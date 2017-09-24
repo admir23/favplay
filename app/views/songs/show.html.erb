@@ -1,10 +1,27 @@
-<div class="row pt-1">
-  <div class="col-md-4 offset-md-4">
-    <p><strong>Name:</strong></p>
-    <p><%= @song.name %></p>
-    <br>
-    <p><strong>Year:</strong></p>
-    <p><%= @song.album.released %></p>
-    <br>
+<div class="container">
+  <div class="row mt-5">
+		<div class="col-md-4">
+	  	<table class="table pt-5 mt-4">
+		    <thead>
+		      <tr>
+		        <th>#</th>
+		        <th width="10%"></th>
+		        <th>Song</th>
+		        <th>Artist</th>
+		        <th>Album</th>
+		        <th>Length</th>
+		        <th>Genre</th>
+		      </tr>
+		    </thead>
+			  <tbody>
+			    <%= render @song %>
+			  </tbody>
+		  </table>
+	    <br>	
+	    <% if current_user.admin? || current_user.superadmin? %>
+	    <%= link_to 'Edit', edit_song_path, class:'btn btn-sm btn-secondary' %>
+	    <%= link_to 'Delete', song_path(@song), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger'%>
+	    <% end %>
+	  </div>
   </div>
-</div>
+</div>  

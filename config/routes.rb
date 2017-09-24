@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   post '/song:id/favorite', to: 'songs#favorite', as: :favorite
   delete '/song:id/favorite', to: 'favorites#destroy', as: :destroy
   
-  namespace :admin do
-    resource :dashboard, only: [:show]
+  namespace :superadmin do
+    namespace :admin do
+      resource :dashboard, only: [:show]
+    end  
   end 
 
   resources :users, only: [:new, :create]
