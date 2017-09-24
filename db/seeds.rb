@@ -1,12 +1,16 @@
-Album.create!([
-  {name: "DAMN", released: 2017, img_url: "http://www.xxlmag.com/files/2017/04/kendrick-lamar-damn-cover.jpeg", artist_id: 1, user_id: 1, genre_id: 1},
-  {name: "Dangerous Woman", released: 2016, img_url: "https://upload.wikimedia.org/wikipedia/en/4/4b/Ariana_Grande_-_Dangerous_Woman_%28Official_Album_Cover%29.png", artist_id: 3, user_id: 1, genre_id: 4},
-  {name: "Villian", released: 2017, img_url: "http://cdn.shopify.com/s/files/1/0342/2497/products/queens-of-the-stone-age-villains-south-records-ltd-2_grande.jpeg?v=1497642728", artist_id: 2, user_id: 1, genre_id: 5},
-  {name: "A Moon Shaped Pool", released: 2016, img_url: "https://upload.wikimedia.org/wikipedia/en/c/c1/A_Moon_Shaped_Pool.jpg", artist_id: 4, user_id: 1, genre_id: 3},
-  {name: "To pimp a buterfly", released: 2015, img_url: "https://upload.wikimedia.org/wikipedia/en/f/f6/Kendrick_Lamar_-_To_Pimp_a_Butterfly.png", artist_id: 1, user_id: 1, genre_id: 1},
-  {name: "What’s Going On", released: 1971, img_url: "https://img.discogs.com/sdQTInb-NNf58wNAp_iktAYvpLI=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2653062-1373624039-8301.jpeg.jpg", artist_id: 5, user_id: 1, genre_id: 2},
-  {name: "...And justice for all", released: 1988, img_url: "https://upload.wikimedia.org/wikipedia/en/b/bd/Metallica_-_...And_Justice_for_All_cover.jpg", artist_id: 6, user_id: 1, genre_id: 5},
-  {name: "Travelling Without Moving", released: 1996, img_url: "https://img.discogs.com/KH7E0abr-MsiFjnFaROvLWpRFO0=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-21974-1481492024-8003.jpeg.jpg", artist_id: 7, user_id: 1, genre_id: 6}
+User.create!([
+  {username: "admin", email: "admin@admin.com", password:"password", password_confirmation:"password", role: 1, remember_digest: nil},
+  {username: "superadmin", email: "superadmin@favplay.com", password:"password", password_confirmation:"password",role: 2, remember_digest: nil},
+  {username: "user1", email: "user1@favplay.com", password:"password", password_confirmation:"password", role: 0, remember_digest: nil},
+  {username: "user2", email: "user2@favplay.com", password:"password", password_confirmation:"password", role: 0, remember_digest: nil}
+])
+Genre.create!([
+  {name: "Hip Hop", user_id: 1},
+  {name: "Soul", user_id: 1},
+  {name: "Alternative ", user_id: 1},
+  {name: "Pop", user_id: 1},
+  {name: "Rock", user_id: 1},
+  {name: "Funk", user_id: 1}
 ])
 Artist.create!([
   {name: "Kendrick Lamar", artist_image: "http://cache.umusic.com/_sites/kendricklamar.com/images/og.jpg", user_id: 1, genre_id: 1, artist_details: "Kendrick Lamar Duckworth (born June 17, 1987)[2] is an American rapper and songwriter. Born and raised in Compton, California, he embarked on his musical career as a teenager under the stage name K-Dot, releasing a mixtape that garnered local attention and led to his signing with indie record label Top Dawg Entertainment (TDE). He began to gain recognition in 2010, after his first retail release, Overly Dedicated. The following year, Lamar independently released his first studio album, Section.80, which included his debut single, \"HiiiPoWeR\". By that time, he had amassed a large Internet following and collaborated with several prominent artists in the hip hop industry, including The Game, Busta Rhymes, and Snoop Dogg."},
@@ -17,32 +21,15 @@ Artist.create!([
   {name: "Metallica", artist_image: "https://up-1.cdn-fullscreendirect.com/production/photos/7549/large/20161022_184841_7549_958066.jpeg", user_id: 1, genre_id: 5, artist_details: "Metallica is an American heavy metal band based in San Rafael, California. The band was formed in 1981 in Los Angeles when vocalist/guitarist James Hetfield responded to an advertisement posted by drummer Lars Ulrich in a local newspaper. Metallica's current lineup comprises founding members Hetfield and Ulrich, longtime lead guitarist Kirk Hammett, and bassist Robert Trujillo. Guitarist Dave Mustaine (who went on to form Megadeth) and bassists Ron McGovney, Cliff Burton, and Jason Newsted are also former members of the band."},
   {name: "Jamiroquai", artist_image: "https://lastfm-img2.akamaized.net/i/u/300x300/14114cdf782941b6be4c3d96fd02d919.jpg", user_id: 1, genre_id: 6, artist_details: "Jamiroquai are a British funk and acid jazz band formed in 1992.[7] Fronted by lead singer Jay Kay, Jamiroquai was initially the most prominent component in the London-based funk/acid jazz movement, alongside groups such as Incognito, the James Taylor Quartet, and the Brand New Heavies. Subsequent albums have explored other musical directions such as pop, rock, and electronica."}
 ])
-Favorite.create!([
-  {user_id: 3, song_id: 27},
-  {user_id: 3, song_id: 23},
-  {user_id: 4, song_id: 28},
-  {user_id: 4, song_id: 22},
-  {user_id: 4, song_id: 23},
-  {user_id: 4, song_id: 19}
-])
-Genre.create!([
-  {name: "Hip Hop", user_id: 1},
-  {name: "Soul", user_id: 1},
-  {name: "Alternative ", user_id: 1},
-  {name: "Pop", user_id: 1},
-  {name: "Rock", user_id: 1},
-  {name: "Funk", user_id: 1}
-])
-Playlist.create!([
-  {name: "Day Play", user_id: 1, description: "Day routine music\r\n"},
-  {name: "Night Play", user_id: 1, description: "Play before sleep\r\n"}
-])
-PlaylistSong.create!([
-  {playlist_id: 2, song_id: 24},
-  {playlist_id: 2, song_id: 28},
-  {playlist_id: 2, song_id: 26},
-  {playlist_id: 2, song_id: 19},
-  {playlist_id: 1, song_id: 27}
+Album.create!([
+  {name: "DAMN", released: 2017, img_url: "http://www.xxlmag.com/files/2017/04/kendrick-lamar-damn-cover.jpeg", artist_id: 1, user_id: 1, genre_id: 1},
+  {name: "Dangerous Woman", released: 2016, img_url: "https://upload.wikimedia.org/wikipedia/en/4/4b/Ariana_Grande_-_Dangerous_Woman_%28Official_Album_Cover%29.png", artist_id: 3, user_id: 1, genre_id: 4},
+  {name: "Villian", released: 2017, img_url: "http://cdn.shopify.com/s/files/1/0342/2497/products/queens-of-the-stone-age-villains-south-records-ltd-2_grande.jpeg?v=1497642728", artist_id: 2, user_id: 1, genre_id: 5},
+  {name: "A Moon Shaped Pool", released: 2016, img_url: "https://upload.wikimedia.org/wikipedia/en/c/c1/A_Moon_Shaped_Pool.jpg", artist_id: 4, user_id: 1, genre_id: 3},
+  {name: "To pimp a buterfly", released: 2015, img_url: "https://upload.wikimedia.org/wikipedia/en/f/f6/Kendrick_Lamar_-_To_Pimp_a_Butterfly.png", artist_id: 1, user_id: 1, genre_id: 1},
+  {name: "What’s Going On", released: 1971, img_url: "https://img.discogs.com/sdQTInb-NNf58wNAp_iktAYvpLI=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2653062-1373624039-8301.jpeg.jpg", artist_id: 5, user_id: 1, genre_id: 2},
+  {name: "...And justice for all", released: 1988, img_url: "https://upload.wikimedia.org/wikipedia/en/b/bd/Metallica_-_...And_Justice_for_All_cover.jpg", artist_id: 6, user_id: 1, genre_id: 5},
+  {name: "Travelling Without Moving", released: 1996, img_url: "https://img.discogs.com/KH7E0abr-MsiFjnFaROvLWpRFO0=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-21974-1481492024-8003.jpeg.jpg", artist_id: 7, user_id: 1, genre_id: 6}
 ])
 Song.create!([
   {name: "Blood", length: "1:58", genre_id: 1, album_id: 1, artist_id: 1, user_id: 1, youtube_link: "https://www.youtube.com/watch?v=CRVNAfj6XdY"},
@@ -74,9 +61,14 @@ Song.create!([
   {name: "Virtual Insanity", length: "5:41", genre_id: 6, album_id: 8, artist_id: 7, user_id: 1, youtube_link: "https://www.youtube.com/watch?v=Et9b7LWfnxQ"},
   {name: "Cosmic Girl", length: "4:05", genre_id: 6, album_id: 8, artist_id: 7, user_id: 1, youtube_link: "https://www.youtube.com/watch?v=UBnPedWPatI"}
 ])
-User.create!([
-  {username: "admin", email: "admin@admin.com", password_digest: "$2a$10$fch7odAJE4ZVZ5KaoDHXvOxN5nJg2bPm1ud54mXygQ6CmGTV95ZOe", role: 1, remember_digest: nil},
-  {username: "superadmin", email: "superadmin@favplay.com", password_digest: "$2a$10$EqA5RrQz/h7UDdC1uLEDAeqmfQc2gVp6HNV5CspL1gZGxXE1bM81y", role: 2, remember_digest: nil},
-  {username: "user1", email: "user1@favplay.com", password_digest: "$2a$10$./FsLz9uQWLUiCCazqQMqOy3FQNhJD6rdENB/payrwqdh05o124t2", role: 0, remember_digest: nil},
-  {username: "user2", email: "user2@favplay.com", password_digest: "$2a$10$oVsfZUv2WNgzcwd8agw6heX5InLfLpv2sUmlrGqTWLeE8uRD8Uhkq", role: 0, remember_digest: nil}
+Playlist.create!([
+  {name: "Day Play", user_id: 1, description: "Day routine music\r\n"},
+  {name: "Night Play", user_id: 1, description: "Play before sleep\r\n"}
+])
+PlaylistSong.create!([
+  {playlist_id: 2, song_id: 24},
+  {playlist_id: 2, song_id: 28},
+  {playlist_id: 2, song_id: 26},
+  {playlist_id: 2, song_id: 19},
+  {playlist_id: 1, song_id: 27}
 ])

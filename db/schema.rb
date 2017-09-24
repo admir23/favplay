@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921053043) do
+ActiveRecord::Schema.define(version: 20170922202633) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name", null: false
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170921053043) do
     t.integer "artist_id"
     t.integer "user_id"
     t.string "youtube_link"
+    t.integer "favorites_count", default: 0
     t.index ["album_id"], name: "index_songs_on_album_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
     t.index ["genre_id"], name: "index_songs_on_genre_id"

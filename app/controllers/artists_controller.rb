@@ -37,11 +37,7 @@ class ArtistsController < ApplicationController
 	def show
 		@artist = Artist.find(params[:id])
 		@albums = @artist.albums
-		@top_songs = Favorite.joins("LEFT OUTER JOIN songs ON favorites.song_id = songs.id")
-		 	                     .select("favorites.*,songs.name as name, songs.artist_id as artist_id")
-		 	                     .group(:song_id).order('COUNT(songs.id) DESC')
-	                         .limit(10)
-  	@top_songs = Song.where(artist_id: @artist.id)
+		@top_songs = Song.where(artist_id: @artist.id).order('favorites_count DESC').limit(10)
   end
 
 	def destroy

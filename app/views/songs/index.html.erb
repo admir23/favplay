@@ -4,6 +4,9 @@
 			<h1>Songs <%= link_to 'Add new', new_song_path, class: 'btn btn-primary' %></h1>
 		</div>
 		<br>
+		<div  class="container" id="notice">
+		  <%= display_flash :notice %>
+		</div>
 		<br>
 		<table class="table pt-5 mt-4">
 	    <thead>

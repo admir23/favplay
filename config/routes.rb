@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  # Add and destroy song to/from favorites
   post '/song:id/favorite', to: 'songs#favorite', as: :favorite
   delete '/song:id/favorite', to: 'favorites#destroy', as: :destroy
   
   namespace :admin do
     resource :dashboard, only: [:show]
-  end
+  end 
 
   resources :users, only: [:new, :create]
   resources :playlists

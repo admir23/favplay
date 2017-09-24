@@ -20,11 +20,11 @@ class PlaylistsController < ApplicationController
       if @playlist.save
         format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
         format.json { render :show, status: :created, location: @playlist }
-        format.js
+        format.js { flash[:notice] = 'Playlist was created successfully!' }
       else
         format.html { render :new }
         format.json { render json: @playlist.errors, status: :unprocessable_entity }
-        format.js
+        format.js 
       end
     end
   end
@@ -37,11 +37,11 @@ class PlaylistsController < ApplicationController
       if @playlist.update(playlist_params)
         format.html { redirect_to @playlist, notice: 'Playlist successfully updated.' }
         format.json { render :show, status: :ok, location: @playlist }
-        format.js
+        format.js { flash[:notice] = 'Playlist was updated successfully!' } 
       else
         format.html { render :edit }
         format.json { render json: @playlist.errors, status: :unprocessable_entity }
-        format.js
+        format.js 
       end
     end
   end
@@ -56,7 +56,7 @@ class PlaylistsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to playlists_path, notice: 'Playlist was successfully destroyed.' }
       format.json { head :no_content }
-      format.js
+      format.js { flash[:alert] = 'Playlist was successfully destroyed.'}
     end
   end
  				

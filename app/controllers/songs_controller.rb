@@ -4,10 +4,6 @@ class SongsController < ApplicationController
 
 	def index
 	 	@songs = Song.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
-	 	@top_songs = Favorite.joins("LEFT OUTER JOIN songs ON favorites.song_id = songs.id")
-	 	                     .select("favorites.*,songs.name as name, songs.artist_id as artist_id")
-	 	                     .group(:song_id).order('COUNT(songs.id) DESC')
-                         .limit(10)
   	@latest_albums = Album.order('created_at DESC').last(5)
 	end
 	
@@ -56,10 +52,16 @@ class SongsController < ApplicationController
     @current_user = current_user
 
     respond_to do |format|
-    	format.js
-      format.json { render json: {message: message} }
-      format.html { redirect_to root_path }
-    end
+    	if @current_user.favorites.exists?	
+	    	format.js { flash[:notice] = "#{@song.name} added to favorites!"}
+	      format.json { render json: {message: message} }
+	      format.html { redirect_to root_path }
+      else
+	      format.js { flash[:notice] = "#{@song.name} removed from favorites!"}
+	      format.json { render json: {message: message} }
+	      format.html { redirect_to root_path }
+	    end
+	  end  
   end
 
 
