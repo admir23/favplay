@@ -16,7 +16,7 @@
 		  <p class="album text-muted">Released: <%= @album.released %></p>
 		  <p class="album text-muted">Genre: <%= link_to @album.genre.name, genre_path(@album.genre) %></p>
 		  <br>
-		<% if current_user.admin? || current_user.superadmin? %>
+	  <% if @album.user_id == current_user.id || current_user.superadmin? %>
    	  <%= link_to 'Edit', edit_album_path(@album), class:'btn btn-sm btn-secondary'%>
 		  <%= link_to 'Delete', album_path(@album), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger'%>
 		  <% end %>
@@ -29,12 +29,13 @@
 	        <th></th>
 	        <th>Song</th>
 	        <th>Artist</th>
+	        <th>Album</th>
 	        <th>Length</th>
 	        <th>Genre</th>
 	      </tr>
 	    </thead>
 		  <tbody>
-		    <%= render 'song' %>
+		    <%= render @songs %>
 		  </tbody>
 	  </table>
   </div>

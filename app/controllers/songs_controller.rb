@@ -1,8 +1,6 @@
 class SongsController < ApplicationController
 	before_action :authorize
-	before_action :authorize_for_superadmins, { only: [:edit, :destroy] }
-	before_action :authorize_for_admins, { only: [:new] }
-	before_action :find_song, {only: [:edit, :update, :show, :favorite]}
+	before_action :find_song, {only: [:edit, :update, :show, :destroy, :favorite]}
 
 	def index
 	 	@songs = Song.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
@@ -10,26 +8,30 @@ class SongsController < ApplicationController
 	end
 	
 	 
-	 def new
-	 	@song = Song.new
-	 end
+	def new
+	 @song = Song.new
+  end
 	 
-	 def create
+	def create
 	 	@song = Song.new(songs_params)
 	 	@song.user_id = current_user.id
-		 	if @song.save
-		 		flash[:notice] = 'Song created successfully'
-		 		redirect_to songs_path
-		 	else
-		 		render :new
-		 	end
-		end
+	 	if @song.save
+	 		flash[:notice] = 'Song created successfully'
+	 		redirect_to songs_path
+	 	else
+	 	render :new
+	 end
+	end
 	 	
 
-	 def edit
-	 end
+	def edit
+	 	unless @song.user_id == current_user.id || current_user.superadmin?
+	 		flash[:notice] = 'Permisson denied!'
+	 		redirect_to root_path
+	 	end
+	end
 	 
-	 def update
+	def update
 	 	if @song.update(songs_params)
 	 		flash[:notice] = 'Song successfully updated'
 	 		redirect_to songs_path
@@ -38,17 +40,24 @@ class SongsController < ApplicationController
 	 	end
 	end				
 
-	 def show
-	 end
+	 
+	def show
+	end
 
-	 def destroy
-	 	@song.destroy
-	 	flash[:notice] = 'Song deleted successfully'
-	 	redirect_to songs_path
-	 end
+
+	def destroy
+	 	unless @song.user_id == current_user.id || current_user.superadmin?
+	 		flash[:notice] = 'Permisson denied!'
+	 		redirect_to root_path
+	 	else	
+		 	@song.destroy
+		 	flash[:notice] = 'Song deleted successfully'
+		 	redirect_to songs_path
+		end 	
+	end
    
 
-   def favorite
+  def favorite
     @song = Song.find(params[:id])
     @song.update_favorites(current_user)
     @current_user = current_user
@@ -68,14 +77,14 @@ class SongsController < ApplicationController
 
 
 
-	 private
+	private
 
-	 def songs_params
-	 	params.require(:song).permit(:name, :length, :youtube_link, :artist_id, :album_id, :genre_id)	
-	 end
-	 
-	 def find_song
-	  @song = Song.find(params[:id])
- 	 end 	
+	def songs_params
+		params.require(:song).permit(:name, :length, :youtube_link, :artist_id, :album_id, :genre_id)	
+	end
+
+	def find_song
+		@song = Song.find(params[:id])
+	end 	
 
 end	 						

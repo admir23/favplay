@@ -1,7 +1,5 @@
 class AlbumsController < ApplicationController
 	before_action :authorize
-	before_action :authorize_for_superadmins, { only: [:edit, :destroy] }
-	before_action :authorize_for_admins, { only: [:new] }
 	before_action :find_album, { only: [:edit, :update, :show, :destroy] }
 
 	def index
@@ -26,6 +24,10 @@ class AlbumsController < ApplicationController
 
 
 	def edit
+	  unless @album.user_id == current_user.id || current_user.superadmin?
+			flash[:notice] = 'Permisson denied!'
+      redirect_to root_path
+    end  
 	end
 
 	def update
@@ -43,11 +45,19 @@ class AlbumsController < ApplicationController
      @artist = @album.artist
 	end
 
+
 	def destroy
-		@album.destroy
-		flash[:notice] = 'Album deleted'
-	  redirect_to albums_path
-	end
+		unless @album.user_id == current_user.id || current_user.superadmin?
+			flash[:notice] = 'Permisson denied!'
+      redirect_to root_path
+    else 
+	    @album.destroy
+			flash[:notice] = 'Album deleted'
+		  redirect_to albums_path
+	  end  
+  end
+	
+		 
 	
 	private
 

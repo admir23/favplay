@@ -15,17 +15,17 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless current_user
   end
 
-  def authorize_for_admins
-    unless current_user.admin?
-      flash[:notice] = 'Unauthorized access, you shall not pass!'
-      redirect_to root_path
-    end
-  end
-  
   def authorize_for_superadmins
     unless current_user.superadmin?
       flash[:notice] = 'Unauthorized access, you shall not pass!'
       redirect_to root_path
     end
-  end
+  end  
+  
+  def authorize_for_admins
+    unless current_user.admin?
+      flash[:notice] = 'Unauthorized access, you shall not pass!'
+      redirect_to root_path
+    end
+  end  
 end

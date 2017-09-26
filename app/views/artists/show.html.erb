@@ -12,7 +12,7 @@
       <h2><%= @artist.name %></h2>
       <p class="album"><%= @artist.artist_details %></p>
       <p class="album">Total Albums: <%= @artist.albums.count %></p>
-      <% if current_user.admin? || current_user.superadmin?%>
+      <% if @artist.user_id == current_user.id || current_user.superadmin? %>
       <%= link_to 'Edit', edit_artist_path, class:'btn btn-sm btn-secondary' %>
       <%= link_to 'Delete', artist_path(@artist), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger'%>
       <% end %>

@@ -1,11 +1,9 @@
 class ArtistsController < ApplicationController
 	before_action :authorize
-	before_action :authorize_for_superadmins, { only: [:edit, :destroy] }
-	before_action :authorize_for_admins, { only: [:new] }
 	before_action :find_artist, { only: [:edit, :update, :show, :destroy] }
 
 	def index
-		@artists = Artist.all
+		@artists = Artist.all.order(created_at: :desc)
 	end
 
 	def new
@@ -25,6 +23,10 @@ class ArtistsController < ApplicationController
   end
   
   def edit
+	  unless @artist.user_id == current_user.id || current_user.superadmin?
+			flash[:notice] = 'Permisson denied!'
+      redirect_to root_path
+	  end 
   end
 
   def update
@@ -43,9 +45,14 @@ class ArtistsController < ApplicationController
   end
 
 	def destroy
-		@artist.destroy
-		flash[:notice] = 'Artist deleted'
-		redirect_to artists_path
+		unless @artist.user_id == current_user.id || current_user.superadmin?
+			flash[:notice] = 'Permisson denied!'
+      redirect_to root_path
+    else 
+			@artist.destroy
+			flash[:notice] = 'Artist deleted'
+			redirect_to artists_path
+		end	
 	end
 
 	private

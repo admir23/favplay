@@ -1,5 +1,5 @@
-<div class="container p-1">
-  <div class="row">
+<div class="row mt-5">
+  <div class="container">
 		<div class="col-md-2 offset-md-10">
 			<% if current_user.admin? || current_user.superadmin? %>
 			<%= link_to 'Add new song', new_song_path, class: 'btn btn-primary' %>
@@ -10,7 +10,7 @@
 		  <%= display_flash :notice %>
 		</div>
 		<br>
-		<table class="table table-responsive pt-5 mt-4">
+		<table class="table pt-5">
 	    <thead>
 	      <tr>
 	        <th>#</th>
@@ -31,7 +31,7 @@
 	 </div>
    <div class="row">
     <div class="container">
-      <div class="col-md-4 offset-md-4">
+      <div class="col-md-6 offset-md-6">
        <%= will_paginate(@songs, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %> 
     </div>
 </div>	 	

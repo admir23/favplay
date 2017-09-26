@@ -1,7 +1,5 @@
 class GenresController < ApplicationController
 	before_action :authorize
-	before_action :authorize_for_superadmins, { only: [:edit, :destroy] }
-	before_action :authorize_for_admins, { only: [:new] }
 	before_action :find_genre, { only: [:edit, :update, :show, :destroy] }
 
 	def index
@@ -25,6 +23,10 @@ class GenresController < ApplicationController
   end
 
   def edit
+  	unless @genre.user_id == current_user.id || current_user.superadmin?
+  		flash[:notice] = 'Permisson denied!'
+  		redirect_to root_path
+  	end
   end
 
   def update
@@ -42,9 +44,14 @@ class GenresController < ApplicationController
 	end
 
   def destroy
-  	@genre.destroy
-  	flash[:notice] = 'Genre deleted'
-  	redirect_to genres_path
+  	unless @genre.user_id == current_user.id || current_user.superadmin?
+  		flash[:notice] = 'Permisson denied!'
+  		redirect_to root_path
+  	else 	
+	  	@genre.destroy
+	  	flash[:notice] = 'Genre deleted'
+	  	redirect_to genres_path
+	  end	
   end
 
   private
