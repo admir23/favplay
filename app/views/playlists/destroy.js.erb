@@ -1,3 +1,4 @@
+alert("Are you sure you want to delete this playlist?");
 $("#playlist_<%= @playlist.id %>").fadeOut(500, function(){
 	$(this).remove();
 	$("#notice").html("<%= flash[:alert] %>");
