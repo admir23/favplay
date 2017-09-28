@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
 	before_action :authorize
+	before_action :authorize_for_admins,{ only: [:new, :edit, :destroy] }
 	before_action :find_album, { only: [:edit, :update, :show, :destroy] }
 
 	def index
@@ -56,6 +57,8 @@ class AlbumsController < ApplicationController
 		  redirect_to albums_path
 	  end  
   end
+
+ 
 	
 		 
 	

@@ -1,5 +1,6 @@
 class GenresController < ApplicationController
 	before_action :authorize
+	before_action :authorize_for_admins,{ only: [:new, :edit, :destroy] }
 	before_action :find_genre, { only: [:edit, :update, :show, :destroy] }
 
 	def index

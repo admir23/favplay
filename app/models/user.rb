@@ -23,13 +23,14 @@ class User < ApplicationRecord
   ROLE_ADMIN = 1
   ROLE_SUPERADMIN = 2
 
+  def regular_user?
+    role == ROLE_USER
+  end  
 
-# Defines if user is admin
   def admin?
     role == ROLE_ADMIN
   end  
 
-# Defines if user is superadmin
   def superadmin?
     role == ROLE_SUPERADMIN
   end
