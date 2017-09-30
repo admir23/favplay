@@ -19,10 +19,3 @@
 //= require_tree .
 
 
-
-// tooltip
-
-$(function(){
-  $("a[rel='tooltip']").tooltip();
-})
-
