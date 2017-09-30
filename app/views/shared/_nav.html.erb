@@ -42,7 +42,7 @@
 
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <% if current_user.admin? || current_user.superadmin? %>
-          <a class="dropdown-item" ><%= link_to 'Dashboard', superadmin_admin_dashboard_path, class:'drop-nav' %></a>
+          <a class="dropdown-item" ><%= link_to 'Dashboard', superadmin_dashboard_path, class:'drop-nav' %></a>
         <% end %>
           <a class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete, class:'drop-nav' %></a>
         </ul>    

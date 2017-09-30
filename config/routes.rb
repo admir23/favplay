@@ -12,10 +12,9 @@ Rails.application.routes.draw do
   delete '/song:id/favorite', to: 'favorites#destroy', as: :destroy
   
   namespace :superadmin do
-    namespace :admin do
       resource :dashboard, only: [:show]
-    end  
-  end 
+  end  
+
 
   resources :users, only: [:new, :create]
   resources :playlists
