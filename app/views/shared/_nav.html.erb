@@ -1,12 +1,14 @@
-  <nav class="navbar navbar-toggleable-md navbar-custom navbar-inverse bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="col-md-2">
-      <%= link_to image_tag("/assets/brand/FP.svg", alt: "FavPlay"), root_path, class: 'navbar-brand d-inline-block align-top' %>
-    </div>  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="nav navbar-nav ml-auto">
+<nav class="navbar navbar-toggleable-md navbar-custom navbar-inverse bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+<!-- Brand -->
+  <%= link_to image_tag("/assets/brand/FP.svg", alt: "FavPlay"), root_path, class: 'navbar-brand d-inline-block align-top' %>
+
+<!-- Links -->
+<div class="collapse navbar-collapse" id="nav-content">   
+  <ul class="navbar-nav ml-auto">
       <% unless logged_in? %>    
         <li class="nav-item">
           <li class="nav-link" href="#"><%= link_to 'Log in', login_path %></li>
@@ -37,8 +39,8 @@
          </li>
       </ul> 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Logged in as <%= current_user.username %></a>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">Logged in as <%= current_user.username %>
+        </a>
 
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <% if current_user.admin? || current_user.superadmin? %>
@@ -50,4 +52,3 @@
     <% end %>
   </div>
 </nav>
-
