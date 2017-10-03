@@ -17,8 +17,7 @@ class SongsController < ApplicationController
 	 	@song = Song.new(songs_params)
 	 	@song.user_id = current_user.id
 	 	if @song.save
-	 		flash[:notice] = 'Song created successfully'
-	 		redirect_to songs_path
+	 		redirect_to songs_path, success:'Song created successfully'
 	 	else
 	 	render :new
 	 end
@@ -27,15 +26,13 @@ class SongsController < ApplicationController
 
 	def edit
 	 	unless @song.user_id == current_user.id || current_user.superadmin?
-	 		flash[:notice] = 'Permisson denied!'
-	 		redirect_to root_path
+	 		redirect_to root_path, danger: 'Permisson denied!'
 	 	end
 	end
 	 
 	def update
 	 	if @song.update(songs_params)
-	 		flash[:notice] = 'Song successfully updated'
-	 		redirect_to songs_path
+	 		redirect_to songs_path, success:'Song updated successfully'
 	 	else
 	 		render :edit
 	 	end
@@ -48,15 +45,14 @@ class SongsController < ApplicationController
 
 	def destroy
 	 	unless @song.user_id == current_user.id || current_user.superadmin?
-	 		flash[:notice] = 'Permisson denied!'
-	 		redirect_to root_path
+	 		redirect_to root_path, danger: 'Permisson denied!'
 	 	else	
 		 	@song.destroy
-		 	flash[:notice] = 'Song deleted successfully'
-		 	redirect_to songs_path
+		 	redirect_to songs_path, danger:'Song deleted successfully'
 		end 	
 	end
    
+
 
   def favorite
     @song = Song.find(params[:id])

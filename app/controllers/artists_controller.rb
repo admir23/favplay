@@ -16,8 +16,7 @@ class ArtistsController < ApplicationController
 		@artist.user_id = current_user.id
 
 		if @artist.save
-			flash[:notice] = 'Artist created successfully'
-			redirect_to artists_path
+			redirect_to artists_path, success: 'Artist created successfully!'
 		else
 			render :new
     end
@@ -25,15 +24,13 @@ class ArtistsController < ApplicationController
   
   def edit
 	  unless @artist.user_id == current_user.id || current_user.superadmin?
-			flash[:notice] = 'Permisson denied!'
-      redirect_to root_path
+			redirect_to root_path, danger: 'Permisson denied!'
 	  end 
   end
 
   def update
   	if @artist.update(artist_params)
-			flash[:notice] = 'Artist successfully updated' 
-			redirect_to artists_path
+			redirect_to artists_path, success: 'Artist successfully updated!' 
 		else
 			render :edit
 		end
@@ -47,12 +44,10 @@ class ArtistsController < ApplicationController
 
 	def destroy
 		unless @artist.user_id == current_user.id || current_user.superadmin?
-			flash[:notice] = 'Permisson denied!'
-      redirect_to root_path
+			redirect_to root_path, danger: 'Permisson denied!'
     else 
 			@artist.destroy
-			flash[:notice] = 'Artist deleted'
-			redirect_to artists_path
+			redirect_to artists_path, danger: 'Artist deleted!'
 		end	
 	end
 

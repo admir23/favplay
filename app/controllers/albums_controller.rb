@@ -16,8 +16,7 @@ class AlbumsController < ApplicationController
 		@album.user_id = current_user.id
     
     if @album.save
-			flash[:notice] = 'Album created successfully'
-			redirect_to albums_path
+			redirect_to albums_path, success: 'Album created successfully'
 		else
 			render :new
 		end
@@ -26,15 +25,13 @@ class AlbumsController < ApplicationController
 
 	def edit
 	  unless @album.user_id == current_user.id || current_user.superadmin?
-			flash[:notice] = 'Permisson denied!'
-      redirect_to root_path
+			redirect_to root_path, danger: 'Permisson denied!'
     end  
 	end
 
 	def update
 		if @album.update(album_params)
-			flash[:notice] = 'Album successfully updated'
-			redirect_to albums_path
+			redirect_to albums_path, success: 'Album successfully updated'
 		else
 			render :edit
 		end
@@ -49,12 +46,10 @@ class AlbumsController < ApplicationController
 
 	def destroy
 		unless @album.user_id == current_user.id || current_user.superadmin?
-			flash[:notice] = 'Permisson denied!'
-      redirect_to root_path
+      redirect_to root_path, danger: 'Permisson denied!'
     else 
 	    @album.destroy
-			flash[:notice] = 'Album deleted'
-		  redirect_to albums_path
+		  redirect_to albums_path, danger: 'Album deleted!'
 	  end  
   end
 

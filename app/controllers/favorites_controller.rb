@@ -9,8 +9,7 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find(params[:id])
     @current_user = current_user
      if @favorite.destroy
-      flash[:alert] = "#{@favorite.song.name} removed from favorites"
-      redirect_to favorites_path
+      redirect_to favorites_path, danger:"#{@favorite.song.name} removed from favorites"
      end 
   end  
 

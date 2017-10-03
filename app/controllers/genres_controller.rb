@@ -14,10 +14,8 @@ class GenresController < ApplicationController
 	def create
 		@genre = Genre.new(genre_params)
 		@genre.user_id = current_user.id
-
-		if @genre.save
-			flash[:notice] = 'Genre created successfully'
-			redirect_to genres_path
+    if @genre.save
+			redirect_to genres_path, success: 'Genre created successfully'
 		else
 			render :new
 		end
@@ -25,15 +23,13 @@ class GenresController < ApplicationController
 
   def edit
   	unless @genre.user_id == current_user.id || current_user.superadmin?
-  		flash[:notice] = 'Permisson denied!'
-  		redirect_to root_path
+  		redirect_to root_path, danger: 'Permisson denied!'
   	end
   end
 
   def update
   	if @genre.update(genre_params)
-			flash[:notice] = 'Genre successfully updated'
-			redirect_to genres_path
+			redirect_to genres_path, success: 'Genre successfully updated!'
 		else
 			render :edit
 		end
@@ -46,12 +42,10 @@ class GenresController < ApplicationController
 
   def destroy
   	unless @genre.user_id == current_user.id || current_user.superadmin?
-  		flash[:notice] = 'Permisson denied!'
-  		redirect_to root_path
+  		redirect_to root_path, danger: 'Permisson denied!'
   	else 	
 	  	@genre.destroy
-	  	flash[:notice] = 'Genre deleted'
-	  	redirect_to genres_path
+	  	redirect_to genres_path, danger: 'Genre deleted!'
 	  end	
   end
 

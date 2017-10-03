@@ -9,8 +9,7 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in @user 
-      flash[:success] = 'Registered successfully!'
-      redirect_to root_path
+      redirect_to root_path, success: 'Registered successfully!'
     else
       render :new
     end

@@ -20,33 +20,37 @@
 	</div>
 </section>
 	<% else %>
-  <%= display_flash :notice %>
-	<div class="container">
-    <div class="row row-offcanvas row-offcanvas-right">
-      <div class="col-xs-8 col-sm-8 pr-5">
-      	<br>
-        <div class="row">
-          <%= render 'songs' %>
-        </div>
-      </div>  
-        <!--/row-->
-      <!--/.col-xs-12.col-sm-9-->
-      <div class="col-xs-1 col-sm-4 mt-5 pt-5 pl-5" id="sidebar">
-        <div class="card home-card">
-			    <div class="card-block">
-				   	 <h4 class="card-title">Popular Songs</h4>
-				     <%= render 'popular_songs' %>
-			       <div class="mt-5">
-			       	<h4 class="card-title">Latest Albums</h4>
-				      <%= render 'latest_albums' %>
-				    </div>
-          </div>
-        </div>
-      <!--/.sidebar-offcanvas-->
-      </div>
-    <!--/row-->
-<% end %>	
+<%= render 'shared/flash' %>    
+<div class="container">	
+	<div class="row h-100">
+    <main class="col py-3">
+            <div class="row">
+                <div class="col">
+                    <div class="tab-content py-3">
+                        <div class="tab-pane active" id="tab1" role="tabpanel">
+                            <div class="col-xs-2 col-sm-8 col-md-8">
+                             <%= render 'songs'%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-10 mt-5 m-b-20">
+                    <div class="card card-inverse bg-inverse mb-3">
+                        <div class="card-block">
+                            <h3 class="card-title">Popular Songs</h3>
+                          <%= render 'popular_songs' %>
+                        </div>
+                    </div>
+                    <div class="card bg-faded border-0">
+                        <div class="card-block">
+                            <h3 class="card-title">Latest Albums</h3>
+                          <%= render 'latest_albums' %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
-</div>
-</div>
-
+<%= render 'shared/footer' %>
+<% end %>

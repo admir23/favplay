@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
+  add_flash_types :danger, :info, :warning, :success
+
   def logged_in?
     current_user
   end

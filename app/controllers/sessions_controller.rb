@@ -6,13 +6,11 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
-      flash[:notice] = 'Logged in successfully!'
       log_in @user
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      redirect_to root_path
+      redirect_to root_path, success: 'Logged in successfully!'
     else
-      flash[:error] = 'Incorrect username or password!'
-      render :new
+      redirect_to login_path, danger: 'Incorrect username or password!'
     end
   end
 

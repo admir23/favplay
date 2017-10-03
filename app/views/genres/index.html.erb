@@ -1,3 +1,4 @@
+<%= render 'shared/flash' %>
 <div class="row mt-5">
   <div class="container">
   	<div class="col-md-2 offset-md-10">
@@ -5,7 +6,6 @@
 	 	  <%= link_to 'Add new genre', new_genre_path, class: 'btn btn-primary' %>
       <% end %>
 	 	</div>
-      <%= display_flash :notice %>
 	 	<br>
 	 	<table class="table pt-5">
       <thead>
