@@ -6,5 +6,5 @@ $("#playlist_<%= @playlist.id %>").fadeOut(500, function(){
 	$("#container_playlists").prepend('<%= j render @playlist %>');
 });
 
-	$("#notice").html(" <%= flash[:notice] %>");
+$("#notice").html(" <%= flash[:notice] %>");
 	

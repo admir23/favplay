@@ -1,0 +1,39 @@
+<div class="container mt-5">
+	<br>
+  <div class="row">
+  	<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+  		<div class="card">
+	     <%= link_to admin_artist_path(@artist) do %>
+			   <%=image_tag @artist.artist_image, class: "card-img-top" %>
+			 <% end %>  
+		  </div>
+  	</div>	  
+    <div class="col-sm-6 col-md-6 col-lg-6 mt-4">
+      <h2><%= @artist.name %></h2>
+      <p class="album"><%= @artist.artist_details %></p>
+      <p class="album">Total Albums: <%= @artist.albums.count %></p>
+      <% if @artist.user_id == current_user.id || current_user.superadmin? %>
+      <%= link_to 'Edit', edit_admin_artist_path, class:'btn btn-sm btn-secondary' %>
+      <%= link_to 'Delete', admin_artist_path(@artist), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger'%>
+     <% end %>
+    </div>
+   </div>
+    <h2 class="lead mt-5">Top 10 Songs</h2>
+    <table class="table pt-5 mt-4">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th></th>
+          <th>Song</th>
+          <th>Artist</th>
+          <th>Album</th>
+          <th>Length</th>
+          <th>Genre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @top_songs %>
+      </tbody>
+    </table>
+  </div>
+</div> 

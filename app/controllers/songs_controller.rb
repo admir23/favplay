@@ -1,7 +1,6 @@
 class SongsController < ApplicationController
 	before_action :authorize
-	before_action :authorize_for_admins,{ only: [:new, :edit, :destroy] }
-	before_action :find_song, {only: [:edit, :update, :show, :destroy, :favorite]}
+	before_action :find_song, {only: [:show, :favorite]}
 
 	def index
 	 	@songs = Song.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
@@ -9,50 +8,8 @@ class SongsController < ApplicationController
 	end
 	
 	 
-	def new
-	 @song = Song.new
-  end
-	 
-	def create
-	 	@song = Song.new(songs_params)
-	 	@song.user_id = current_user.id
-	 	if @song.save
-	 		redirect_to songs_path, success:'Song created successfully'
-	 	else
-	 	render :new
-	 end
+  def show
 	end
-	 	
-
-	def edit
-	 	unless @song.user_id == current_user.id || current_user.superadmin?
-	 		redirect_to root_path, danger: 'Permisson denied!'
-	 	end
-	end
-	 
-	def update
-	 	if @song.update(songs_params)
-	 		redirect_to songs_path, success:'Song updated successfully'
-	 	else
-	 		render :edit
-	 	end
-	end				
-
-	 
-	def show
-	end
-
-
-	def destroy
-	 	unless @song.user_id == current_user.id || current_user.superadmin?
-	 		redirect_to root_path, danger: 'Permisson denied!'
-	 	else	
-		 	@song.destroy
-		 	redirect_to songs_path, danger:'Song deleted successfully'
-		end 	
-	end
-   
-
 
   def favorite
     @song = Song.find(params[:id])
@@ -78,10 +35,10 @@ class SongsController < ApplicationController
 
 	def songs_params
 		params.require(:song).permit(:name, :length, :youtube_link, :artist_id, :album_id, :genre_id)	
-	end
+	end	
 
 	def find_song
 		@song = Song.find(params[:id])
-	end 	
+	end	
 
 end	 						

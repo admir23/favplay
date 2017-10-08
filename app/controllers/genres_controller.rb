@@ -1,53 +1,17 @@
 class GenresController < ApplicationController
 	before_action :authorize
-	before_action :authorize_for_admins,{ only: [:new, :edit, :destroy] }
-	before_action :find_genre, { only: [:edit, :update, :show, :destroy] }
+	before_action :find_genre, { only: [:show] }
 
 	def index
 		@genres = Genre.all
 	end
 	
-	def new
-		@genre = Genre.new
-	end
-	
-	def create
-		@genre = Genre.new(genre_params)
-		@genre.user_id = current_user.id
-    if @genre.save
-			redirect_to genres_path, success: 'Genre created successfully'
-		else
-			render :new
-		end
-  end
-
-  def edit
-  	unless @genre.user_id == current_user.id || current_user.superadmin?
-  		redirect_to root_path, danger: 'Permisson denied!'
-  	end
-  end
-
-  def update
-  	if @genre.update(genre_params)
-			redirect_to genres_path, success: 'Genre successfully updated!'
-		else
-			render :edit
-		end
-	end
-
 	def show
 		@album = @genre.albums
 		@song = @genre.songs
 	end
 
-  def destroy
-  	unless @genre.user_id == current_user.id || current_user.superadmin?
-  		redirect_to root_path, danger: 'Permisson denied!'
-  	else 	
-	  	@genre.destroy
-	  	redirect_to genres_path, danger: 'Genre deleted!'
-	  end	
-  end
+  
 
   private
 

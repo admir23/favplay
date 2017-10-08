@@ -1,0 +1,40 @@
+<%= display_flash :notice %>
+<%= render 'shared/flash' %>
+<div class="row mt-5">
+  <div class="container">
+		<div class="col-md-2 offset-md-10">
+			<% if current_user.admin? || current_user.superadmin? %>
+			<%= link_to 'Add new song', new_admin_song_path, class: 'btn btn-primary' %>
+			<% end %>
+		</div>
+		<br>
+		<br>
+		<table class="table pt-5">
+	    <thead>
+	      <tr>
+	        <th>#</th>
+	        <th width="10%"></th>
+	        <th>Song</th>
+	        <th>Artist</th>
+	        <th>Album</th>
+	        <th>Length</th>
+	        <th>Genre</th>
+	        <th></th>
+	        <th></th>
+	      </tr>
+	    </thead>
+		  <tbody>
+		    <%= render @songs %>
+		  </tbody>
+	  </table>
+	 </div>
+   <div class="row">
+    <div class="container">
+      <div class="col-md-6 offset-md-6 mt-5 mb-3">
+       <%= will_paginate(@songs, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %> 
+      </div>
+    </div>	 	
+  </div>
+ </div>
+</div>
+<%= render 'shared/footer' %>

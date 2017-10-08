@@ -1,0 +1,31 @@
+<tr>
+  <th scope="row"><%= song.id %></th>
+<% if logged_in? %>
+  <td>
+    <div class="">
+      <%= link_to favorite_path(id: song.id), method: :post , remote: true do %>
+      <div class="like-btn text-center" song_id="<%= song.id %>">
+        <span class="<%= song.heart_class(current_user) %>"></span>
+      </div>
+      <% end %>
+    </div>
+  </td>
+  <td><%= link_to song.name, admin_song_path(song) %></td>
+  <td><%= link_to song.artist.name,admin_artist_path(song.artist_id)%></td>
+  <td><%= link_to song.album.name, admin_album_path(song.album_id)%></td>
+  <td><%= link_to song.length, admin_song_path(song)%></td>
+  <td><%= link_to song.genre.name, admin_genre_path(song.genre_id)%></td>
+    <td>
+      <%= link_to song.youtube_link, target: :_blank do %>
+       <i class="fa fa-play" aria-hidden="true" rel="tooltip" data-placement="top" title="Press to play on YouTube"></i>
+    </td>  
+    <td>
+      <a data-toggle="modal" data-target="#addSong" data-id="<%= song.id %>" title="Add this song to playlist" class="open-AddSong" href="#addSong"><i class="fa fa-plus" aria-hidden="true" rel="tooltip" data-placement="top" title="Add to playlist"></i></a>
+
+      <div class="modal fade" id="addSong">
+        <%= render 'shared/add_song_to_playlist' %>
+      </div>
+    </td>
+  <% end %>
+  </tr>
+<% end %>

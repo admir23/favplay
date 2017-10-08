@@ -2,7 +2,7 @@ module ApplicationHelper
   
   def display_flash(type)
     if flash[type]
-      content_tag :div, nil, class: 'alert alert-success ' do
+      content_tag :div, nil, class: 'alert alert-success' do
         content_tag :p, flash[type]
       end
     end

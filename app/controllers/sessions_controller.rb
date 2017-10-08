@@ -4,13 +4,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       log_in @user
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       redirect_to root_path, success: 'Logged in successfully!'
     else
-      redirect_to login_path, danger: 'Incorrect username or password!'
+      redirect_to login_path, danger: 'Incorrect email or password!'
     end
   end
 

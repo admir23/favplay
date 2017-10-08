@@ -82,6 +82,22 @@
 
 // Custom Css
 
+#notice_wrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(127, 63, 152, 0.85);
+  p {
+    padding: 2.0rem 0;
+    margin: 0;
+    font-size: 1.25rem;
+    color: white;
+    text-align: center;
+  }  
+}
+
+
 html, body {
   height: 100%;
   font-family: Oswald, sans-serif;

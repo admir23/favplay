@@ -6,11 +6,6 @@
 		<div class="card-block">
 		  <p><%= link_to album.name, album_path(album) %></p>
 		  <p class="artist">Artist: <%= link_to album.artist.name, artist_path(album.artist) %></p>
-		  
-		  <% if album.user_id == current_user.id || current_user.superadmin? %>
-		  <%= link_to 'Edit', edit_album_path(album), class:'btn btn-sm btn-secondary'%>
-		  <%= link_to 'Delete', album_path(album), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger'%>
-		  <% end %>
 		</div>
 	</div>
 </div>

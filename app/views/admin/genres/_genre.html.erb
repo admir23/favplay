@@ -1,0 +1,8 @@
+<tr>
+  <th scope="row"><%= link_to genre.id, genre_path(genre) %></th>
+  <td><%= link_to genre.name, admin_genre_path(genre)%></td>
+  <td><%= link_to genre.songs.count, songs_path(genre.songs)%></td>
+  <td><%= link_to genre.artists.count, artists_path(genre.artists)%></td> 
+  <td><%= link_to genre.albums.count, albums_path(genre.albums)%></td>
+  
+</tr>

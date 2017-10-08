@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
 	include SongHelper
 	
 	def index

@@ -1,0 +1,25 @@
+<%= render 'shared/flash' %>
+<div class="row mt-5">
+  <div class="container">
+  	<div class="col-md-2 offset-md-10">
+      <% if current_user.admin? || current_user.superadmin? %>
+	 	  <%= link_to 'Add new genre', new_admin_genre_path, class: 'btn btn-primary' %>
+      <% end %>
+	 	</div>
+	 	<br>
+	 	<table class="table pt-5">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Genres</th>
+          <th>Songs</th>
+          <th>Artists</th>
+          <th>Albums</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @genres %>
+      </tbody>
+    </table>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-toggleable-md navbar-custom navbar-inverse bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   
+<!-- Brand -->
+ <div class="container">
+  <%= link_to image_tag("/assets/brand/FP.svg", alt: "FavPlay"), root_path, class: 'navbar-brand d-inline-block align-top' %>
+
+<!-- Links -->
+<div class="collapse navbar-collapse" id="nav-content">   
+  <ul class="navbar-nav ml-auto">
+      <% unless logged_in? %>    
+        <li class="nav-item">
+          <li class="nav-link" href="#"><%= link_to 'Log in', login_path %></li>
+        </li>  
+          <li class="nav-item">
+            <li class="nav-link" href="#"><%= link_to 'Sign up', new_user_path %></li>
+        </li> 
+      </ul> 
+      <% else %>  
+      <ul class="navbar-nav mx-auto justify-content-center"> 
+         <li class="nav-item">
+            <li class="nav-link" href="#"><%= link_to 'Artists', admin_artists_path, class:'nav-orange' %></li>
+         </li>  
+         <li class="nav-item">
+            <li class="nav-link" href="#"><%= link_to 'Songs', admin_songs_path, class:'nav-orange' %></li>
+         </li>
+         <li class="nav-item">
+            <li class="nav-link" href="#"><%= link_to 'Albums',admin_albums_path, class:'nav-orange' %></li>
+         </li>    
+         <li class="nav-item">
+            <li class="nav-link" href="#"><%= link_to 'Genres',admin_genres_path , class:'nav-orange'%></li>
+         </li>
+      </ul> 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">Logged in as <%= current_user.username %>
+        </a>
+
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <% if current_user.admin? || current_user.superadmin? %>
+          <a class="dropdown-item" ><%= link_to 'Dashboard', admin_dashboard_path, class:'drop-nav' %></a>
+        <% end %>
+          <a class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete, class:'drop-nav' %></a>
+        </ul>    
+      </div> 
+    <% end %>
+  </div>
+ </div> 
+</nav>

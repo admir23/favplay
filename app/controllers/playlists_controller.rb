@@ -18,7 +18,7 @@ class PlaylistsController < ApplicationController
 		@playlist.user_id = current_user.id
 			respond_to do |format|
       if @playlist.save
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
+        format.html { redirect_to @playlist, success: 'Playlist was successfully created.' }
         format.json { render :show, status: :created, location: @playlist }
         format.js { flash[:notice] = 'Playlist was created successfully!' }
       else
@@ -35,7 +35,7 @@ class PlaylistsController < ApplicationController
   def update
     respond_to do |format|
       if @playlist.update(playlist_params)
-        format.html { redirect_to @playlist, notice: 'Playlist successfully updated.' }
+        format.html { redirect_to @playlist, success: 'Playlist successfully updated.' }
         format.json { render :show, status: :ok, location: @playlist }
         format.js { flash[:notice] = 'Playlist was updated successfully!' } 
       else
@@ -54,7 +54,7 @@ class PlaylistsController < ApplicationController
   def destroy
     @playlist.destroy
     respond_to do |format|
-      format.html { redirect_to playlists_path, notice: 'Playlist was successfully destroyed.' }
+      format.html { redirect_to playlists_path, danger: 'Playlist was successfully destroyed.' }
       format.json { head :no_content }
       format.js { flash[:alert] = 'Playlist was successfully destroyed.'}
     end

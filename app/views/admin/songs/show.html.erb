@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row mt-5">
+		<div class="col-md-4">
+	  	<table class="table pt-5 mt-4">
+		    <thead>
+		      <tr>
+		        <th>#</th>
+		        <th width="10%"></th>
+		        <th>Song</th>
+		        <th>Artist</th>
+		        <th>Album</th>
+		        <th>Length</th>
+		        <th>Genre</th>
+		      </tr>
+		    </thead>
+			  <tbody>
+			    <%= render @song %>
+			  </tbody>
+		  </table>
+	    <br>	
+	    <% if @song.user_id == current_user.id || current_user.superadmin? %>
+	    <%= link_to 'Edit', edit_admin_song_path, class:'btn btn-sm btn-secondary' %>
+	    <%= link_to 'Delete', admin_song_path(@song), method: :delete,data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger'%>
+	    <% end %>
+	  </div>
+  </div>
+</div>  

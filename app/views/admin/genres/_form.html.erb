@@ -1,4 +1,4 @@
-<%= form_for @genre do |f| %>
+<%= form_for [:admin, @genre] do |f| %>
 	<%= f.label :name %>
 	<%= f.text_field :name, class:'form-control' %>
 	<%= error_for :name, @genre.errors %>

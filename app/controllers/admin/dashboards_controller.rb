@@ -1,4 +1,4 @@
-class Superadmin::DashboardsController < Superadmin::BaseController
+class Admin::DashboardsController < Admin::BaseController
 
 	def show
 	 unless current_user.admin? || current_user.superadmin?

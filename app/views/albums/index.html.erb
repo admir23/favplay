@@ -1,13 +1,11 @@
 <%= render 'shared/flash' %>
 <div class="container p-5">
 	<div class="row">
-		<div class="col-md-2 offset-md-10">
-			<% if current_user.admin? || current_user.superadmin? %>
-		  <%= link_to 'Add new album', new_album_path, class: 'btn btn-primary' %>
-		  <% end %>
-		</div>
+		<div class="col-md-3">
+      <h4>Albums</h4>
+      <br>
+    </div>
 	</div>
-	<br>
 		<hr>
 	  <div class="row">
 		  <%= render @albums %>

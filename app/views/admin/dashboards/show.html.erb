@@ -8,35 +8,35 @@
             <p><%= @songs.size %></p>
           </div>
          <div class="text-center mt-2 mb-2">
-          <h1 class="blockquote">Total Songs</h1></div> 
+          <h1 class="blockquote"><%= link_to 'Total Songs', admin_songs_path %></h1></div> 
         </div>
         <div class="col-md-3 col-sm-4 col-xs-2">
           <div class="circle bg-info ">
             <p><%= @artists.size %></p>
           </div>
          <div class="text-center mt-2 mb-2">
-          <h1 class="blockquote">Total Artists</h1></div> 
+          <h1 class="blockquote"><%= link_to 'Total Artists', admin_artists_path %></h1></div> 
         </div>
         <div class="col-md-3 col-sm-4 col-xs-2">
           <div class="circle bg-warning">
             <p><%= @albums.size %></p>
           </div>
           <div class="text-center mt-2 mb-2">
-          <h1 class="blockquote">Total Albums</h1></div> 
+          <h1 class="blockquote"><%= link_to 'Total Albums', admin_albums_path %></h1></div> 
         </div>
         <div class="col-md-3 col-sm-4 col-xs-2">
           <div class="circle bg-danger">
             <p><%= @genres.size %></p>
           </div>
          <div class="text-center mt-2 mb-2">
-          <h1 class="blockquote">Total Genres</h1></div> 
+          <h1 class="blockquote"><%= link_to 'Total Genres', admin_genres_path %></h1></div> 
         </div>
         <div class="col-md-3 col-sm-4 col-xs-2">
           <div class="circle ">
             <p><%= @users.size %></p>
           </div>
          <div class="text-center mt-2 mb-2">
-          <h1 class="blockquote"> Total Users</h1></div> 
+          <h1 class="blockquote">Total Users</h1></div> 
         </div>
     </div>
   </div>
