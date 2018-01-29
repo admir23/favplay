@@ -3,12 +3,13 @@
 	<div class="layer">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 jumbotron">
+				<div class="col-md-12 fp-box">
 					<div class="to-center text-center">
-						<h2 class="display-1">FavPlay</h2>
+						<h2 class="fp-intro">FavPlay</h2>
 						<br>
-						<p class="lead">Create ultimate playlists with your favorite artists!</p>
-						<p>Create an account with us, or simply log in below!</p>
+						<h3 class="catch">Create ultimate playlists with your favorite artists!</h3>
+                        <h5 class="catch">Create an account with us, or simply log in below!</h5>
+                        <br>
 						<p class="lead">
 							<%= link_to 'Log in', login_path, class: "btn btn-primary" %>
 							<%= link_to 'Sign up!', new_user_path, class: "btn btn-primary" %>
@@ -27,7 +28,7 @@
                 <div class="col">
                     <div class="tab-content py-3">
                         <div class="tab-pane active" id="tab1" role="tabpanel">
-                            <div class="col-xs-2 col-sm-8 col-md-8">
+                            <div class="col-xs-2 col-sm-8 col-md-12">
                              <%= render 'songs'%>
                             </div>
                         </div>
